@@ -1,0 +1,105 @@
+Git Cheat Sheet (from our chat)
+
+Note:
+- User-dependent names are replaced with placeholders:
+  - `feature/branch_name`
+  - `https://github.com/username/repository_name.git`
+
+01) git init
+- Purpose: Initialize a new Git repository in the current folder.
+- Flags/options:
+  - No flags used in our chat.
+
+02) git branch -M main
+- Purpose: Rename current branch to `main` (force rename if needed).
+- Flags/options:
+  - `-M`: force-move/rename branch, even if target name exists.
+
+03) git switch [options] <branch>
+- Purpose: Switch to an existing branch or create a new one before switching.
+- Examples from our chat:
+  - `git switch main`
+  - `git switch -c feature/branch_name`
+- Flags/options:
+  - `-c`: create a new branch before switching.
+  - `<branch>`: target branch name.
+
+04) git branch [options]
+- Purpose: Branch inspection and deletion.
+- Examples from our chat:
+  - `git branch --show-current`
+  - `git branch -d feature/branch_name`
+- Flags/options:
+  - `--show-current`: print current branch name only.
+  - `-d`: safe delete of a local branch (only if merged).
+  - `-D`: force delete of a local branch (dangerous; deletes unmerged branch too).
+
+05) git add <pathspec>
+- Purpose: Stage changes for commit.
+- Examples from our chat:
+  - `git add .`
+  - `git add .gitignore`
+- Flags/options:
+  - `<pathspec>`: what to stage (`.` means current directory recursively).
+
+06) git restore --staged <file>
+- Purpose: Unstage file(s) from index while keeping local edits in working directory.
+- Flags/options:
+  - `--staged`: apply restore to staging area (index), not to working tree content.
+  - `<file>`: target file path.
+
+07) git status
+- Purpose: Show working tree and staging area status.
+- Flags/options:
+  - No flags used in our chat.
+
+08) git commit -m "commit message"
+- Purpose: Create a commit from staged changes.
+- Flags/options:
+  - `-m`: set commit message inline.
+
+09) git log --oneline --decorate --graph -n 5
+- Purpose: Show compact commit history with refs and branch graph.
+- Flags/options:
+  - `--oneline`: one line per commit.
+  - `--decorate`: show branch/tag pointers.
+  - `--graph`: ASCII graph of branch structure.
+  - `-n 5`: limit output to last 5 commits.
+
+10) git remote [subcommand/options]
+- Purpose: Configure and inspect remotes.
+- Examples from our chat:
+  - `git remote add origin https://github.com/username/repository_name.git`
+  - `git remote -v`
+- Flags/options:
+  - `add`: add a new remote.
+  - `origin`: conventional default remote name.
+  - `-v`: verbose output (shows fetch/push URLs).
+
+11) git push [options] [remote] [branch]
+- Purpose: Push commits to remote.
+- Examples from our chat:
+  - `git push`
+  - `git push -u origin main`
+  - `git push -u origin feature/branch_name`
+- Flags/options:
+  - `-u`: set upstream tracking for current branch.
+  - `[remote]`: remote name (for example `origin`).
+  - `[branch]`: branch name to push.
+
+12) git rm --cached <pathspec>
+- Purpose: Untrack files from Git index only (keep files on disk).
+- Examples from our chat:
+  - `git rm --cached *.rar`
+  - `git rm --cached *.bak`
+  - `git rm --cached "*Zone.Identifier"`
+- Flags/options:
+  - `--cached`: remove from index, not from working directory.
+  - `<pathspec>`: target file(s) or wildcard pattern.
+
+13) git rm -r --cached .
+- Purpose: Remove all tracked files from index recursively (keep local files), usually to re-apply `.gitignore`.
+- Flags/options:
+  - `-r`: recursive.
+  - `--cached`: index-only removal.
+  - `.`: current directory scope.
