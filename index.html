@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dev Team — сайт-визитка</title>
+  <title>Фарма-Сити — сайт-визитка</title>
   <style>
     * {
       box-sizing: border-box;
@@ -17,13 +17,11 @@
 
     body {
       min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-      color: #f5f7fb;
+      font-family: century gothic, Helvetica, sans-serif;
+      line-height: 1.5;
+      color: #B0C4DE;
       background:
-        radial-gradient(circle at top left, rgba(91, 141, 239, 0.35), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(118, 75, 162, 0.35), transparent 35%),
-        #0f172a;
+        #191970;
     }
 
     a {
@@ -40,7 +38,7 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(15, 23, 42, 0.82);
+      background: #4682B4;
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -83,7 +81,12 @@
       gap: 42px;
       align-items: center;
     }
-
+    .catalog-heading {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 42px;
+      align-items: center; 
+    }
     .badge {
       display: inline-flex;
       align-items: center;
@@ -395,85 +398,237 @@
         border-radius: 20px;
       }
     }
+/* Кнопки друг за другом в столбик на всю ширину */
+.category-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 48px;
+  width: 100%;
+}
+
+.category-btn-stack {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 18px 24px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 100%;
+  font-family: inherit;
+}
+
+.category-btn-stack:hover {
+  transform: translateX(8px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(147, 197, 253, 0.5);
+}
+
+.category-btn-stack.active {
+  background: linear-gradient(135deg, rgba(147, 197, 253, 0.2), rgba(196, 181, 253, 0.2));
+  border-color: #93c5fd;
+  box-shadow: 0 4px 12px rgba(147, 197, 253, 0.15);
+}
+
+.category-btn-icon-stack {
+  font-size: 28px;
+  width: 44px;
+  text-align: center;
+}
+
+.category-btn-text-stack {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.category-btn-count-stack {
+  background: rgba(147, 197, 253, 0.2);
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #93c5fd;
+  min-width: 48px;
+  text-align: center;
+}
+/* Поиск в шапке */
+.header-search {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.header-search:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(147, 197, 253, 0.5);
+}
+
+.header-search-input {
+  background: transparent;
+  border: none;
+  padding: 10px 16px;
+  color: white;
+  font-size: 14px;
+  width: 220px;
+  outline: none;
+}
+
+.header-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.header-search-btn {
+  background: rgba(147, 197, 253, 0.2);
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #93c5fd;
+  transition: 0.2s;
+}
+
+.header-search-btn:hover {
+  background: #93c5fd;
+  color: #0f172a;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 850px) {
+  .header__inner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .header-search {
+    order: 3;
+    width: 100%;
+  }
+  
+  .header-search-input {
+    flex: 1;
+    width: auto;
+  }
+  
+  .nav {
+    order: 2;
+  }
+}
   </style>
 </head>
 <body>
   <header class="header">
     <div class="container header__inner">
-      <a class="logo" href="#top">Dev<span>Team</span></a>
-      <nav class="nav" aria-label="Главная навигация">
-        <a href="#about">О нас</a>
-        <a href="#team">Команда</a>
-        <a href="#projects">Проекты</a>
-        <a href="#contact">Контакты</a>
-      </nav>
-    </div>
+  <a class="logo" href="#top">Фарма-Сити</a>
+  
+  <!-- БЛОК ПОИСКА -->
+  <div class="header-search">
+    <input type="text" class="header-search-input" placeholder="Поиск по сайту..." id="globalSearch">
+    <button class="header-search-btn">🔍</button>
+  </div>
+  
+  <nav class="nav" aria-label="Главная навигация">
+    <a href="#about">О нас</a>
+    <a href="#team">Команда</a>
+    <a href="#projects">Проекты</a>
+    <a href="#contact">Контакты</a>
+  </nav>
+</div>
   </header>
 
   <main id="top">
     <section class="hero">
       <div class="container hero__grid">
         <div>
-          <div class="badge">Команда из 2 разработчиков</div>
-          <h1>Создаём современные сайты и веб-приложения <span>под задачи бизнеса</span></h1>
+          <h1>Популярные товары</h1>
           <p>
-            Мы небольшая команда, поэтому быстро договариваемся, внимательно относимся к деталям
-            и доводим проект от идеи до готового результата.
           </p>
-          <div class="hero__actions">
-            <a class="button button--primary" href="#contact">Связаться с нами</a>
-            <a class="button button--secondary" href="#projects">Смотреть проекты</a>
-          </div>
+          <aside class="hero-card" aria-label="Каталог">
+  <div class="hero-card__top">
+  </div>
+  
+  <div style="display: flex; flex-direction: column; gap: 14px;">
+    <div style="padding: 12px; background: rgba(255,255,255,0.05); border-radius: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <span style="font-weight: 800;">Парацетамол 500мг 20шт</span>
+          <div style="font-size: 12px; color: #cbd5e1;">Жаропонижающее и обезбаливающее средство
+</div>
         </div>
-
-        <aside class="hero-card" aria-label="Карточка статуса команды">
-          <div class="hero-card__top">
-            <span class="status">Открыты к проектам</span>
-            <span>2026</span>
-          </div>
-          <div class="code-window">
-            <div class="code-window__bar">
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-            </div>
-            <pre>const team = {
-  developers: 2,
-  focus: "web development",
-  values: ["quality", "speed", "clarity"]
-};</pre>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <h2 class="section-title">Что мы делаем</h2>
-        <p class="section-text">
-          Проектируем и разрабатываем сайты, лендинги и простые веб-сервисы. Помогаем оформить идею,
-          собрать структуру, написать код и подготовить проект к публикации.
-        </p>
-
-        <div class="cards">
-          <article class="card">
-            <h3>Сайты-визитки</h3>
-            <p>Аккуратные страницы для команд, специалистов, учебных и коммерческих проектов.</p>
-          </article>
-          <article class="card">
-            <h3>Лендинги</h3>
-            <p>Страницы для презентации продукта, услуги, мероприятия или учебного проекта.</p>
-          </article>
-          <article class="card">
-            <h3>Веб-приложения</h3>
-            <p>Интерфейсы, формы, личные кабинеты и небольшие сервисы под конкретную задачу.</p>
-          </article>
+        <div style="text-align: right;">
+          <div style="font-size: 20px; font-weight: 800; color: #93c5fd;">от 87₽</div>
         </div>
       </div>
-    </section>
-
-    <section id="team">
-      <div class="container">
+    </div>
+    
+    <div style="padding: 12px; background: rgba(255,255,255,0.05); border-radius: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <span style="font-weight: 800;">Левомеколь 10г</span>
+          <div style="font-size: 12px; color: #cbd5e1;">Ранозаживляющая мазь</div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 20px; font-weight: 800; color: #93c5fd;">от 183₽</div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="padding: 12px; background: rgba(255,255,255,0.05); border-radius: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <span style="font-weight: 800;">Полисорб 50г</span>
+          <div style="font-size: 12px; color: #cbd5e1;">Энтеросорбирующее средство</div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 20px; font-weight: 800; color: #93c5fd;">от 664₽</div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="padding: 12px; background: rgba(255,255,255,0.05); border-radius: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <span style="font-weight: 800;">Супрастин 25мг 20шт</span>
+          <div style="font-size: 12px; color: #cbd5e1;">Антигистаминный препарат</div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 20px; font-weight: 800; color: #93c5fd;">от 110₽</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <a href="#contact" class="button button--primary" style="margin-top: 20px; width: 100%; text-align: center; display: block;">Больше →</a>
+</aside>
+</div>
+    <main id="top">
+          <h1>Сезонные товары</h1>
+<!-- Кнопки вертикальным списком на всю ширину -->
+<div class="category-stack">
+  <button class="category-btn-stack" data-category="allergy">
+    <span class="category-btn-text-stack">Аллергии</span>
+  </button>
+  
+  <button class="category-btn-stack" data-category="gastro">
+    <span class="category-btn-text-stack">ЖКТ</span>
+  </button>
+  
+  <button class="category-btn-stack" data-category="hangover">
+    <span class="category-btn-text-stack">Похмелье</span>
+  </button>
+  
+  <button class="category-btn-stack" data-category="disinfect">
+    <span class="category-btn-text-stack">Дезинфицирующие средства и лейкопластыри</span>
+  </button>
+</div>
         <h2 class="section-title">Наша команда</h2>
         <p class="section-text">
           Нас двое: один отвечает за интерфейс и визуальную часть, второй — за логику, серверную часть
@@ -533,7 +688,46 @@
       </div>
     </section>
 
-    <section id="contact">
+    <section id="catalog">
+      <div class="container">
+        <h2 class="section-title">Каталог услуг</h2>
+        <p class="section-text">
+          Выберите подходящий вариант сотрудничества с нами
+        </p>
+
+        <div class="cards">
+          <article class="card">
+            <h3>💼 Базовый сайт-визитка</h3>
+            <p>Одностраничный сайт под ключ. Вёрстка, адаптив, форма связи.</p>
+            <div class="price-tag" style="margin-top: 16px; font-size: 28px; font-weight: 800; color: #93c5fd;">от 15 000₽</div>
+            <a href="#contact" class="button button--secondary" style="margin-top: 16px; width: 100%;">Заказать</a>
+          </article>
+      
+      <article class="card">
+        <h3>🚀 Многостраничный сайт</h3>
+        <p>5-10 страниц, админ-панель, новости, галерея и обратная связь.</p>
+        <div class="price-tag" style="margin-top: 16px; font-size: 28px; font-weight: 800; color: #93c5fd;">от 45 000₽</div>
+        <a href="#contact" class="button button--secondary" style="margin-top: 16px; width: 100%;">Заказать</a>
+      </article>
+      
+      <article class="card">
+        <h3>🛒 Интернет-магазин</h3>
+        <p>Полноценный магазин с корзиной, оплатой и личным кабинетом.</p>
+        <div class="price-tag" style="margin-top: 16px; font-size: 28px; font-weight: 800; color: #93c5fd;">от 120 000₽</div>
+        <a href="#contact" class="button button--secondary" style="margin-top: 16px; width: 100%;">Заказать</a>
+      </article>
+      
+      <article class="card">
+        <h3>⚡ Техподдержка сайта</h3>
+        <p>Обновления, доработки, бэкапы и защита от взлома.</p>
+        <div class="price-tag" style="margin-top: 16px; font-size: 28px; font-weight: 800; color: #93c5fd;">от 5 000₽/мес</div>
+        <a href="#contact" class="button button--secondary" style="margin-top: 16px; width: 100%;">Заказать</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+   <section id="contact">
       <div class="container">
         <div class="contact">
           <h2>Готовы обсудить проект?</h2>
