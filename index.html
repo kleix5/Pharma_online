@@ -12,14 +12,12 @@
   left: 0;
   width: 100%;
   height: 74px;
-  background: rgba(25, 25, 112, 0.96);
+  background: #302E8C;
   backdrop-filter: blur(14px);
   border-top: 1px solid rgba(255,255,255,0.08);
-
   display: flex;
   justify-content: space-around;
   align-items: center;
-
   z-index: 1000;
 }
 
@@ -27,407 +25,222 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-
-  color: #cbd5e1;
-  font-size: 12px;
+  gap: 10px;
+  color: #F0FFFF;
+  font-size: 18px;
   transition: 0.2s ease;
 }
 
-.bottom-nav__icon {
-  font-size: 22px;
-}
-
 .bottom-nav__item:hover {
-  color: #93c5fd;
+  color: #F0FFFF;
   transform: translateY(-2px);
 }
 
 .bottom-nav__item.active {
-  color: #93c5fd;
+  color: #A7C7E7;
 }
 
 /* Чтобы контент не прятался под меню */
 body {
   padding-bottom: 90px;
 }
+
 /* сброс отступов */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 /* плавная прокрутка */
-    html {
-      scroll-behavior: smooth;
-    }
+html {
+  scroll-behavior: smooth;
+}
+
 /* общий стиль страницы */
-    body {
-      min-height: 100vh;
-      font-family: century gothic, Helvetica, sans-serif;
-      line-height: 1.5;
-      color: #F8F8FF;
-      background: #191970;
-    }
-/*стилизации для всех ссылок*/
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+body {
+  min-height: 100vh;
+  font-family: century gothic, Helvetica, sans-serif;
+  line-height: 1.5;
+  color: #F8F8FF;
+  background: #191970;
+}
+
+/* стилизация для всех ссылок */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 /* центрирование контента */
-    .container {
-      width: min(1120px, 92%);
-      margin: 0 auto;
-    }
-/*стиль шапки*/
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: #4B0082;
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-/*положение элементов в шапке*/
-    .header__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 0;
-    }
-/*стиль надписи фарма сити*/
-    .logo {
-      font-size: 25px;
-      font-weight: 700;
-    }
+.container {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+}
 
-    .logo span {
-      color: #60a5fa;
-    }
-/*сезонные товары(отступ)*/
-    .hero__grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 35px;
-      align-items: center;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 22px;
-      padding: 8px 14px;
-      border: 1px solid rgba(96, 165, 250, 0.35);
-      border-radius: 999px;
-      color: #bfdbfe;
-      background: rgba(37, 99, 235, 0.12);
-      font-size: 14px;
-    }
+/* стиль шапки */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #302E8C;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
 
-    .hero h1 {
-      max-width: 780px;
-      font-size: clamp(38px, 6vw, 72px);
-      line-height: 1.05;
-      margin-bottom: 24px;
-    }
+/* положение элементов в шапке */
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+}
 
-    .hero h1 span {
-      color: #93c5fd;
-    }
+/* стиль надписи фарма сити */
+.logo {
+  font-size: 25px;
+  font-weight: 700;
+}
 
-    .hero p {
-      max-width: 650px;
-      color: #cbd5e1;
-      font-size: 19px;
-      margin-bottom: 34px;
-    }
+.logo span {
+  color: #F0FFFF;
+}
 
-    .hero__actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
+/* сезонные товары(отступ) */
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 35px;
+  align-items: center;
+}
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 12px 20px;
-      border-radius: 14px;
-      font-weight: 700;
-      transition: 0.2s ease;
-    }
+.hero h1 {
+  max-width: 780px;
+  font-size: clamp(38px, 6vw, 72px);
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
 
-    .button--primary {
-      color: #0f172a;
-      background: #93c5fd;
-    }
+/* кнопка больше - увеличенная как в оригинале */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  font-weight: 700;
+  transition: 0.2s ease;
+  cursor: pointer;
+  font-size: 18px;
+}
 
-    .button--primary:hover {
-      background: #bfdbfe;
-      transform: translateY(-2px);
-    }
+.button--primary {
+  color: #F0FFFF;
+  background: #6495ED;
+}
 
-    .button--secondary {
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      color: #e2e8f0;
-      background: rgba(255, 255, 255, 0.05);
-    }
+.button--primary:hover {
+  background: #7BA5F0;
+  transform: translateY(-2px);
+}
 
-    .button--secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
-    }
+/* меню популярных товаров */
+.hero-card {
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
 
-    .hero-card {
-      padding: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.06);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
-    }
+.hero-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+  color: #F0FFFF;
+  font-size: 14px;
+}
 
-    .hero-card__top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 22px;
-      color: #cbd5e1;
-      font-size: 14px;
-    }
+/* карточка товара как кликабельная кнопка */
+.product-item {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 100%;
+  font-family: inherit;
+  border: none;
+  text-align: left;
+}
 
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
+.product-item:hover {
+  transform: translateX(8px);
+  background: rgba(255, 255, 255, 0.12);
+}
 
-    .status::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 20px #22c55e;
-    }
+.product-item:active {
+  transform: translateX(4px);
+}
 
-    .code-window {
-      overflow: hidden;
-      border-radius: 18px;
-      background: #020617;
-      border: 1px solid rgba(148, 163, 184, 0.18);
-    }
+.product-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
 
-    .code-window__bar {
-      display: flex;
-      gap: 7px;
-      padding: 13px;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.16);
-    }
+.product-title {
+  font-weight: 800;
+  font-size: 16px;
+  color: #F0FFFF;
+}
 
-    .dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: #64748b;
-    }
+.product-description {
+  font-size: 15px;
+  color: #F0FFFF;
+  margin-top: 4px;
+}
 
-    .code-window pre {
-      padding: 20px;
-      color: #c4b5fd;
-      font-size: 14px;
-      white-space: pre-wrap;
-    }
+.product-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: #A7C7E7;
+  text-align: right;
+}
 
-    section {
-      padding: 74px 0;
-    }
+/* нижняя надпись */
+.footer {
+  padding: 30px 0;
+  color: #94a3b8;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 30px;
+}
 
-    .section-title {
-      margin-bottom: 14px;
-      font-size: clamp(30px, 4vw, 44px);
-      line-height: 1.15;
-    }
+/* правильное расположение */
+@media (max-width: 850px) {
+  .hero__grid,
+  .cards,
+  .team,
+  .projects {
+    grid-template-columns: 1fr;
+  }
 
-    .section-text {
-      max-width: 720px;
-      margin-bottom: 34px;
-      color: #cbd5e1;
-      font-size: 18px;
-    }
+  /* отступ сверху */
+  .hero {
+    padding-top: 30px;
+  }
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .card {
-      padding: 26px;
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 21px;
-    }
-
-    .card p {
-      color: #cbd5e1;
-    }
-
-    .team {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
-
-    .member {
-      display: grid;
-      grid-template-columns: 96px 1fr;
-      gap: 22px;
-      align-items: center;
-      padding: 26px;
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .avatar {
-      display: grid;
-      place-items: center;
-      width: 96px;
-      height: 96px;
-      border-radius: 24px;
-      color: #0f172a;
-      background: linear-gradient(135deg, #93c5fd, #c4b5fd);
-      font-size: 34px;
-      font-weight: 800;
-    }
-
-    .member h3 {
-      font-size: 24px;
-      margin-bottom: 4px;
-    }
-
-    .role {
-      margin-bottom: 12px;
-      color: #93c5fd;
-      font-weight: 700;
-    }
-
-    .member p {
-      color: #cbd5e1;
-      margin-bottom: 14px;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .tag {
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(148, 163, 184, 0.14);
-      color: #e2e8f0;
-      font-size: 13px;
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-    }
-
-    .project {
-      min-height: 210px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 26px;
-      border-radius: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background:
-        linear-gradient(180deg, rgba(15, 23, 42, 0.15), rgba(15, 23, 42, 0.9)),
-        radial-gradient(circle at top right, rgba(96, 165, 250, 0.35), transparent 35%),
-        rgba(255, 255, 255, 0.06);
-    }
-
-    .project h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .project p {
-      color: #cbd5e1;
-    }
-
-    .contact {
-      text-align: center;
-      padding: 70px 30px;
-      border-radius: 34px;
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(124, 58, 237, 0.25));
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .contact h2 {
-      margin-bottom: 14px;
-      font-size: clamp(30px, 4vw, 48px);
-    }
-
-    .contact p {
-      max-width: 640px;
-      margin: 0 auto 28px;
-      color: #dbeafe;
-      font-size: 18px;
-    }
-
-    .footer {
-      padding: 30px 0;
-      color: #94a3b8;
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    @media (max-width: 850px) {
-      .hero__grid,
-      .cards,
-      .team,
-      .projects {
-        grid-template-columns: 1fr;
-      }
-
-      .nav {
-        display: none;
-      }
-
-      .hero {
-        padding-top: 58px;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .member {
-        grid-template-columns: 1fr;
-      }
-
-      .avatar {
-        width: 82px;
-        height: 82px;
-        border-radius: 20px;
-      }
-    }
 /* Кнопки друг за другом в столбик на всю ширину */
 .category-stack {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 48px;
+  margin-bottom: 0;
   width: 100%;
 }
 
@@ -457,29 +270,13 @@ body {
   box-shadow: 0 4px 12px rgba(147, 197, 253, 0.15);
 }
 
-.category-btn-icon-stack {
-  font-size: 28px;
-  width: 44px;
-  text-align: center;
-}
-
 .category-btn-text-stack {
   flex: 1;
   font-size: 18px;
   font-weight: 600;
-  color: #e2e8f0;
+  color: #F0FFFF;
 }
 
-.category-btn-count-stack {
-  background: rgba(147, 197, 253, 0.2);
-  padding: 6px 14px;
-  border-radius: 30px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #93c5fd;
-  min-width: 48px;
-  text-align: center;
-}
 /* Поиск в шапке */
 .header-search {
   display: flex;
@@ -541,245 +338,137 @@ body {
     flex: 1;
     width: auto;
   }
-  
-  .nav {
-    order: 2;
-  }
+}
 
+/* Секция hero обертка */
+.hero {
+  margin-bottom: 30px;
+}
+
+/* Дополнительный отступ после сезонных товаров */
+.hero__grid > div:last-child {
+  margin-bottom: 0;
+}
+
+/* Небольшой отступ перед футером */
+main {
+  margin-bottom: 20px;
+}
   </style>
 </head>
 <body>
   <header class="header">
     <div class="container header__inner">
-  <a class="logo" href="#top">Фарма-Сити</a>
-  
-  <!-- БЛОК ПОИСКА -->
-  <div class="header-search">
-    <input type="text" class="header-search-input" placeholder="Поиск по сайту..." id="globalSearch">
-    <button class="header-search-btn">🔍</button>
-  </div>
-  
-  <nav class="nav" aria-label="Главная навигация">
-    <a href="#about">О нас</a>
-    <a href="#team">Команда</a>
-    <a href="#projects">Проекты</a>
-    <a href="#contact">Контакты</a>
-  </nav>
-</div>
+      <a class="logo" href="#top">Фарма-Сити</a>
+      
+      <!-- БЛОК ПОИСКА -->
+      <div class="header-search">
+        <input type="text" class="header-search-input" placeholder="Поиск по сайту..." id="globalSearch">
+        <button class="header-search-btn">🔍</button>
+      </div>
+    </div>
   </header>
-<!-- Нижнее меню -->
-<nav class="bottom-nav">
-  <a href="#top" class="bottom-nav__item active">
-    <span class="bottom-nav__icon">🏠</span>
-    <span class="bottom-nav__text">Главная</span>
-  </a>
 
-  <a href="#catalog" class="bottom-nav__item">
-    <span class="bottom-nav__icon">📚</span>
-    <span class="bottom-nav__text">Каталог</span>
-  </a>
+  <!-- Нижнее меню -->
+  <nav class="bottom-nav">
+    <a href="#top" class="bottom-nav__item active">
+      <span class="bottom-nav__text">Главная</span>
+    </a>
+    <a href="#catalog" class="bottom-nav__item">
+      <span class="bottom-nav__text">Каталог</span>
+    </a>
+    <a href="#cart" class="bottom-nav__item">
+      <span class="bottom-nav__text">Корзина</span>
+    </a>
+    <a href="#account" class="bottom-nav__item">
+      <span class="bottom-nav__text">Аккаунт</span>
+    </a>
+  </nav>
 
-  <a href="#cart" class="bottom-nav__item">
-    <span class="bottom-nav__icon">🛒</span>
-    <span class="bottom-nav__text">Корзина</span>
-  </a>
-
-  <a href="#account" class="bottom-nav__item">
-    <span class="bottom-nav__icon">👤</span>
-    <span class="bottom-nav__text">Аккаунт</span>
-  </a>
-</nav>
+  <!-- меню поп товаров -->
   <main id="top">
     <section class="hero">
       <div class="container hero__grid">
         <div>
           <h1>Популярные товары</h1>
-          <p>
-          </p>
+          
           <aside class="hero-card" aria-label="Каталог">
-  <div class="hero-card__top">
-  </div>
-  
-  <div style="display: flex; flex-direction: column; gap: 14px;">
-    <div style="padding: 12px; background: rgba(255,255,255,0.05); border-radius: 16px;">
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-          <span style="font-weight: 800;">Парацетамол 500мг 20шт</span>
-          <div style="font-size: 12px; color: #cbd5e1;">Жаропонижающее и обезболивающее средство
-</div>
-        </div>
-        <div style="text-align: right;">
-          <div style="font-size: 20px; font-weight: 800; color: #93c5fd;">от 87₽</div>
-        </div>
-      </div>
-    </div>
-    
-    <div style="padding: 12px; background: rgba(255,255,255,0.05); border-radius: 16px;">
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-          <span style="font-weight: 800;">Левомеколь 10г</span>
-          <div style="font-size: 12px; color: #cbd5e1;">Ранозаживляющая мазь</div>
-        </div>
-        <div style="text-align: right;">
-          <div style="font-size: 20px; font-weight: 800; color: #93c5fd;">от 183₽</div>
-        </div>
-      </div>
-    </div>
-    
-    <div style="padding: 12px; background: rgba(255,255,255,0.05); border-radius: 16px;">
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-          <span style="font-weight: 800;">Полисорб 50г</span>
-          <div style="font-size: 12px; color: #cbd5e1;">Энтеросорбирующее средство</div>
-        </div>
-        <div style="text-align: right;">
-          <div style="font-size: 20px; font-weight: 800; color: #93c5fd;">от 664₽</div>
-        </div>
-      </div>
-    </div>
-    
-    <div style="padding: 12px; background: rgba(255,255,255,0.05); border-radius: 16px;">
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-          <span style="font-weight: 800;">Супрастин 25мг 20шт</span>
-          <div style="font-size: 12px; color: #cbd5e1;">Антигистаминный препарат</div>
-        </div>
-        <div style="text-align: right;">
-          <div style="font-size: 20px; font-weight: 800; color: #93c5fd;">от 110₽</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <a href="#contact" class="button button--primary" style="margin-top: 20px; width: 100%; text-align: center; display: block;">Больше →</a>
-</aside>
-</div>
-    <main id="top">
-          <h1>Сезонные товары</h1>
-<!-- Кнопки вертикальным списком на всю ширину -->
-<div class="category-stack">
-  <button class="category-btn-stack" data-category="allergy">
-    <span class="category-btn-text-stack">Аллергии</span>
-  </button>
-  
-  <button class="category-btn-stack" data-category="gastro">
-    <span class="category-btn-text-stack">ЖКТ</span>
-  </button>
-  
-  <button class="category-btn-stack" data-category="hangover">
-    <span class="category-btn-text-stack">Похмелье</span>
-  </button>
-  
-  <button class="category-btn-stack" data-category="disinfect">
-    <span class="category-btn-text-stack">Дезинфицирующие средства и лейкопластыри</span>
-  </button>
-</div>
-        <h2 class="section-title">Наша команда</h2>
-        <p class="section-text">
-          Нас двое: один отвечает за интерфейс и визуальную часть, второй — за логику, серверную часть
-          и техническую устойчивость проекта.
-        </p>
-
-        <div class="team">
-          <article class="member">
-            <div class="avatar" aria-hidden="true">A</div>
-            <div>
-              <h3>Марк Григорьев</h3>
-              <div class="role">Frontend-разработчик</div>
-              <p>Создаёт структуру страниц, адаптивную вёрстку и удобный пользовательский интерфейс.</p>
-              <div class="tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
-              </div>
+            <div class="hero-card__top"></div>
+            
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <!-- Товар 1 -->
+              <button class="product-item" onclick="showProduct('Парацетамол 500мг 20шт')">
+                <div class="product-content">
+                  <div>
+                    <div class="product-title">Парацетамол 500мг 20шт</div>
+                    <div class="product-description">Жаропонижающее и обезболивающее средство</div>
+                  </div>
+                  <div class="product-price">от 87₽</div>
+                </div>
+              </button>
+              
+              <!-- Товар 2 -->
+              <button class="product-item" onclick="showProduct('Левомеколь 10г')">
+                <div class="product-content">
+                  <div>
+                    <div class="product-title">Левомеколь 10г</div>
+                    <div class="product-description">Ранозаживляющая мазь</div>
+                  </div>
+                  <div class="product-price">от 183₽</div>
+                </div>
+              </button>
+              
+              <!-- Товар 3 -->
+              <button class="product-item" onclick="showProduct('Полисорб 50г')">
+                <div class="product-content">
+                  <div>
+                    <div class="product-title">Полисорб 50г</div>
+                    <div class="product-description">Энтеросорбирующее средство</div>
+                  </div>
+                  <div class="product-price">от 664₽</div>
+                </div>
+              </button>
+              
+              <!-- Товар 4 -->
+              <button class="product-item" onclick="showProduct('Супрастин 25мг 20шт')">
+                <div class="product-content">
+                  <div>
+                    <div class="product-title">Супрастин 25мг 20шт</div>
+                    <div class="product-description">Антигистаминный препарат</div>
+                  </div>
+                  <div class="product-price">от 110₽</div>
+                </div>
+              </button>
             </div>
-          </article>
-
-          <article class="member">
-            <div class="avatar" aria-hidden="true">M</div>
-            <div>
-              <h3>Екатерина Жураховская</h3>
-              <div class="role">Backend-разработчик</div>
-              <p>Проектирует логику приложения, работает с данными и помогает запускать проект на сервере.</p>
-              <div class="tags">
-                <span class="tag">Go</span>
-                <span class="tag">API</span>
-                <span class="tag">Database</span>
-              </div>
-            </div>
-          </article>
+            
+            <!-- Кнопка "Больше" - увеличенная как в оригинале -->
+            <button class="button button--primary" style="margin-top: 20px; width: 100%; text-align: center; display: block; border: none; font-size: 18px; padding: 18px 20px; min-height: 60px;">
+              Больше →
+            </button>
+          </aside>
         </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="container">
-        <h2 class="section-title">Примеры проектов</h2>
-        <p class="section-text">
-          Здесь можно разместить учебные или реальные проекты команды. Пока оставлены примеры,
-          которые легко заменить на свои.
-        </p>
-
-        <div class="projects">
-          <article class="project">
-            <h3>Team Landing</h3>
-            <p>Одностраничный сайт для презентации команды разработки.</p>
-          </article>
-          <article class="project">
-            <h3>Task Tracker</h3>
-            <p>Простой сервис для учёта задач внутри небольшой команды.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="catalog">
-      <div class="container">
-        <h2 class="section-title">Каталог услуг</h2>
-        <p class="section-text">
-          Выберите подходящий вариант сотрудничества с нами
-        </p>
-
-        <div class="cards">
-          <article class="card">
-            <h3>💼 Базовый сайт-визитка</h3>
-            <p>Одностраничный сайт под ключ. Вёрстка, адаптив, форма связи.</p>
-            <div class="price-tag" style="margin-top: 16px; font-size: 28px; font-weight: 800; color: #93c5fd;">от 15 000₽</div>
-            <a href="#contact" class="button button--secondary" style="margin-top: 16px; width: 100%;">Заказать</a>
-          </article>
-      
-      <article class="card">
-        <h3>🚀 Многостраничный сайт</h3>
-        <p>5-10 страниц, админ-панель, новости, галерея и обратная связь.</p>
-        <div class="price-tag" style="margin-top: 16px; font-size: 28px; font-weight: 800; color: #93c5fd;">от 45 000₽</div>
-        <a href="#contact" class="button button--secondary" style="margin-top: 16px; width: 100%;">Заказать</a>
-      </article>
-      
-      <article class="card">
-        <h3>🛒 Интернет-магазин</h3>
-        <p>Полноценный магазин с корзиной, оплатой и личным кабинетом.</p>
-        <div class="price-tag" style="margin-top: 16px; font-size: 28px; font-weight: 800; color: #93c5fd;">от 120 000₽</div>
-        <a href="#contact" class="button button--secondary" style="margin-top: 16px; width: 100%;">Заказать</a>
-      </article>
-      
-      <article class="card">
-        <h3>⚡ Техподдержка сайта</h3>
-        <p>Обновления, доработки, бэкапы и защита от взлома.</p>
-        <div class="price-tag" style="margin-top: 16px; font-size: 28px; font-weight: 800; color: #93c5fd;">от 5 000₽/мес</div>
-        <a href="#contact" class="button button--secondary" style="margin-top: 16px; width: 100%;">Заказать</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-   <section id="contact">
-      <div class="container">
-        <div class="contact">
-          <h2>Готовы обсудить проект?</h2>
-          <p>
-            Напишите нам, если нужен сайт, прототип, учебный проект или помощь с запуском идеи.
-          </p>
-          <a class="button button--primary" href="mailto:team@example.com">team@example.com</a>
+        
+        <div>
+          <h1 style="font-size: clamp(38px, 6vw, 72px); margin-bottom: 24px;">Сезонные товары</h1>
+          
+          <!-- Кнопки вертикальным списком на всю ширину -->
+          <div class="category-stack">
+            <button class="category-btn-stack" data-category="allergy" onclick="filterProducts('allergy')">
+              <span class="category-btn-text-stack">Аллергии</span>
+            </button>
+            
+            <button class="category-btn-stack" data-category="gastro" onclick="filterProducts('gastro')">
+              <span class="category-btn-text-stack">ЖКТ</span>
+            </button>
+            
+            <button class="category-btn-stack" data-category="hangover" onclick="filterProducts('hangover')">
+              <span class="category-btn-text-stack">Похмелье</span>
+            </button>
+            
+            <button class="category-btn-stack" data-category="disinfect" onclick="filterProducts('disinfect')">
+              <span class="category-btn-text-stack">Дезинфицирующие средства и лейкопластыри</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -787,7 +476,7 @@ body {
 
   <footer class="footer">
     <div class="container">
-      © 2026 DevTeam. Сайт-визитка команды разработчиков.
+      © 2026 Фарма-Сити. Сайт-визитка.
     </div>
   </footer>
 </body>
