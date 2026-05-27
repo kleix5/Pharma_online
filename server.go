@@ -1,24 +1,25 @@
-
-// Говорим Go: "Это главный файл, с которого всё начинается"
-package main
-// подключаем инструменты
 import (
-    "fmt" //  для печати текста в консоль(информация о действиях на сайте)
-    "net/http" // для создания веб-сервера    
+"fmt"
+"log"
+"net/http"
 )
-func main() { // главная функция, которая запускается автоматически
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { // "Когда кто-то заходит на сайт (на главную страницу /), делай следующее..."
-		// Логируем запрос
-		fmt.Println("Запрос:", r.URL.Path) // Кто-то зашёл на страницу /catalog" (или любой другой адрес)
-		
-		// Отправляем HTML
-		w.Header().Set("Content-Type", "text/html; charset=utf-8") // Я отправляю тебе HTML страницу с русскими буквами
-		w.Write([]byte('весь хтмл код сюда')) // Отправляем HTML код браузеру
-        
 
+const Port = "8880"
 
-        // Запускаем сервер
-	fmt.Println("Сервер запущен на http://localhost:8080") // Сервер работает, заходи по этому адресу
-	fmt.Println("Нажмите Ctrl+C для остановки")
-	http.ListenAndServe(":8080", nil) // Запускаем сервер и говорим ему слушать порт 8080('номер квартиры')
+func main() {
+// 1. Раздача статических файлов (CSS, картинки)
+// Если у вас есть файл style.css в папке static, он будет доступен по адресу /static/style.css
+http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+
+// 2. Раздача HTML шаблонов
+// Ваш файл index.html должен лежать в папке templates
+http.HandleFunc("/", indexHandler)
+
+// 3. API эндпоинты (как на скриншоте server.go)
+http.HandleFunc("/api/register", registerHandler)
+http.HandleFunc("/api/login", loginHandler)
+http.HandleFunc("/api/cart", cartHandler) // Допустим, для корзины
+
+fmt.Printf("Сервер запущен: http://localhost:%s\n", Port)
+log.Fatal(http.ListenAndServe(":"+Port, nil))
 }
