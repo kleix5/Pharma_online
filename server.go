@@ -1,63 +1,144 @@
 package main
 
 import (
-"fmt"
-"log"
-"net/http"
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+	"strings"
 )
 
-const Port = "8880"
+// ===== CONFIG =====
+
+const Port = "8080"
+
+// ===== STRUCTS =====
+
+type Response struct {
+	Status  string      `json:"status"`
+	Message string      `json:"message,omitempty"`
+	Data    interface{} `json:"data,omitempty"`
+}
+
+// ===== MAIN =====
 
 func main() {
-// 1. Раздача статических файлов (CSS, картинки)
-// Если у вас есть файл style.css в папке static, он будет доступен по адресу /static/style.css
-http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	// Статика
+	http.Handle("/static/",
+		http.StripPrefix("/static/",
+			http.FileServer(http.Dir("static")),
+		),
+	)
 
-// 2. Раздача HTML шаблонов
-// Ваш файл index.html должен лежать в папке templates
-http.HandleFunc("/", indexHandler)
+	// HTML
+	http.HandleFunc("/", indexHandler)
 
-// 3. API эндпоинты (как на скриншоте server.go)
-http.HandleFunc("/api/register", registerHandler)
-http.HandleFunc("/api/login", loginHandler)
-http.HandleFunc("/api/cart", cartHandler) // Допустим, для корзины
+	// API
+	http.HandleFunc("/api/register", registerHandler)
+	http.HandleFunc("/api/login", loginHandler)
+	http.HandleFunc("/api/cart", cartHandler)
 
-fmt.Printf("Сервер запущен: http://localhost:%s\n", Port)
-log.Fatal(http.ListenAndServe(":"+Port, nil))
-}
-// Говорим Go: "Это главный файл, с которого всё начинается"
-package main
-// подключаем инструменты
-import (
-    "fmt" //  для печати текста в консоль(информация о действиях на сайте)
-    "net/http" // для создания веб-сервера    
-    "log"
-    "html/template"
-)
-func main() { // главная функция, которая запускается автоматически
-    http.HandleFunc("/", indexHandler) // "Когда кто-то заходит на сайт (на главную страницу /), делай следующее..."
-
-
-        // Запускаем сервер
-	fmt.Println("Сервер запущен на http://localhost:8080") // Сервер работает, заходи по этому адресу
-	fmt.Println("Нажмите Ctrl+C для остановки")
-	log.Fatal(http.ListenAndServe(":8080", nil)) // Запускаем сервер и говорим ему слушать порт 8080('номер квартиры')
+	fmt.Printf("Сервер запущен: http://localhost:%s\n", Port)
+	log.Fatal(http.ListenAndServe(":"+Port, nil))
 }
 
+// ===== HANDLERS =====
 
+// Главная страница
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	//Любой путь кроме "/" отправляем на 404
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
 	}
 
-	tmpl, err := template.ParseFiles("index.html")
-	if err != nil {
-		http.Error(w, "Не удалось загрузить страницу", http.StatusInternalServerError)
+	http.ServeFile(w, r, "templates/index.html")
+}
+
+// Регистрация
+func registerHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		writeError(w, http.StatusMethodNotAllowed, "Method not allowed")
 		return
 	}
 
-	tmpl.Execute(w, nil)
+	var req struct {
+		Email    string `json:"email"`
+		Password string `json:"password"`
+	}
 
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		writeError(w, http.StatusBadRequest, "Invalid request body")
+		return
+	}
+
+	email := strings.TrimSpace(strings.ToLower(req.Email))
+	password := strings.TrimSpace(req.Password)
+
+	if email == "" || password == "" {
+		writeError(w, http.StatusBadRequest, "Email and password are required")
+		return
+	}
+
+	log.Printf("Пользователь зарегистрирован: %s", email)
+
+	writeJSON(w, http.StatusCreated, Response{
+		Status:  "success",
+		Message: "User registered",
+	})
+}
+
+// Логин
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		writeError(w, http.StatusMethodNotAllowed, "Method not allowed")
+		return
+	}
+
+	var req struct {
+		Email    string `json:"email"`
+		Password string `json:"password"`
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		writeError(w, http.StatusBadRequest, "Invalid request body")
+		return
+	}
+
+	if req.Email == "user@test.com" && req.Password == "pass" {
+		writeJSON(w, http.StatusOK, Response{
+			Status: "success",
+			Data:   map[string]string{"token": "fake-jwt-token"},
+		})
+		return
+	}
+
+	writeError(w, http.StatusUnauthorized, "Invalid credentials")
+}
+
+// Корзина
+func cartHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodGet {
+		writeJSON(w, http.StatusOK, Response{
+			Status: "success",
+			Data:   []string{},
+		})
+		return
+	}
+
+	writeError(w, http.StatusMethodNotAllowed, "Method not allowed")
+}
+
+// ===== HELPERS =====
+
+func writeError(w http.ResponseWriter, code int, msg string) {
+	writeJSON(w, code, Response{
+		Status:  "error",
+		Message: msg,
+	})
+}
+
+func writeJSON(w http.ResponseWriter, code int, resp Response) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(code)
+	json.NewEncoder(w).Encode(resp)
 }
