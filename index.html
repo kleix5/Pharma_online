@@ -247,6 +247,7 @@ a {
 .category-btn-stack {
   display: flex;
   align-items: center;
+  justify-content: center;  /* <-- ГЛАВНОЕ ИЗМЕНЕНИЕ: центрируем содержимое по горизонтали */
   gap: 16px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -256,6 +257,7 @@ a {
   transition: all 0.25s ease;
   width: 100%;
   font-family: inherit;
+  text-align: center;       /* <-- текст внутри тоже центрируем */
 }
 
 .category-btn-stack:hover {
@@ -359,7 +361,7 @@ main {
 <body>
   <header class="header">
     <div class="container header__inner">
-      <a class="logo" href="#top">Фарма-Сити</a>
+      <a class="logo" href="/">Фарма-Сити</a>
       
       <!-- БЛОК ПОИСКА -->
       <div class="header-search">
@@ -397,7 +399,7 @@ main {
             
             <div style="display: flex; flex-direction: column; gap: 14px;">
               <!-- Товар 1 -->
-              <button class="product-item" onclick="showProduct('Парацетамол 500мг 20шт')">
+              <a class="product-item" href="/products/парацетамол.html">
                 <div class="product-content">
                   <div>
                     <div class="product-title">Парацетамол 500мг 20шт</div>
@@ -405,32 +407,32 @@ main {
                   </div>
                   <div class="product-price">от 87₽</div>
                 </div>
-              </button>
+              </a>
               
               <!-- Товар 2 -->
-              <button class="product-item" onclick="showProduct('Левомеколь 10г')">
+              <a class="product-item" href="/products/левомеколь.html">
                 <div class="product-content">
                   <div>
-                    <div class="product-title">Левомеколь 10г</div>
+                    <div class="product-title">Левомеколь 40 мг 40г</div>
                     <div class="product-description">Ранозаживляющая мазь</div>
                   </div>
                   <div class="product-price">от 183₽</div>
                 </div>
-              </button>
+              </a>
               
               <!-- Товар 3 -->
-              <button class="product-item" onclick="showProduct('Полисорб 50г')">
+              <a class="product-item" href="/products/полисорб.html">
                 <div class="product-content">
                   <div>
                     <div class="product-title">Полисорб 50г</div>
                     <div class="product-description">Энтеросорбирующее средство</div>
                   </div>
-                  <div class="product-price">от 664₽</div>
+                  <div class="product-price">от 514₽</div>
                 </div>
-              </button>
+              </a>
               
               <!-- Товар 4 -->
-              <button class="product-item" onclick="showProduct('Супрастин 25мг 20шт')">
+              <a class="product-item" href="/products/супрастин.html">
                 <div class="product-content">
                   <div>
                     <div class="product-title">Супрастин 25мг 20шт</div>
@@ -438,7 +440,7 @@ main {
                   </div>
                   <div class="product-price">от 110₽</div>
                 </div>
-              </button>
+              </a>
             </div>
             
             <!-- Кнопка "Больше" - увеличенная как в оригинале -->
@@ -451,23 +453,23 @@ main {
         <div>
           <h1 style="font-size: clamp(38px, 6vw, 72px); margin-bottom: 24px;">Сезонные товары</h1>
           
-          <!-- Кнопки вертикальным списком на всю ширину -->
+          <!-- Кнопки вертикальным списком на всю ширину с центрированным текстом -->
           <div class="category-stack">
-            <button class="category-btn-stack" data-category="allergy" onclick="filterProducts('allergy')">
+            <a class="category-btn-stack" href="/category/allergy.html">
               <span class="category-btn-text-stack">Аллергии</span>
-            </button>
+            </a>
             
-            <button class="category-btn-stack" data-category="gastro" onclick="filterProducts('gastro')">
+            <a class="category-btn-stack" href="/category/gastro.html">
               <span class="category-btn-text-stack">ЖКТ</span>
-            </button>
+            </a>
             
-            <button class="category-btn-stack" data-category="hangover" onclick="filterProducts('hangover')">
+            <a class="category-btn-stack" href="/category/hangover.html">
               <span class="category-btn-text-stack">Похмелье</span>
-            </button>
+            </a>
             
-            <button class="category-btn-stack" data-category="disinfect" onclick="filterProducts('disinfect')">
+            <a class="category-btn-stack" href="/category/disinfect.html">
               <span class="category-btn-text-stack">Дезинфицирующие средства и лейкопластыри</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -476,7 +478,7 @@ main {
 
   <footer class="footer">
     <div class="container">
-      © 2026 Фарма-Сити. Сайт-визитка.
+      © 2026 Интернет-аптека. Все права защищены.
     </div>
   </footer>
 </body>
