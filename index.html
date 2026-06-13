@@ -376,10 +376,10 @@ main {
     <a href="#top" class="bottom-nav__item active">
       <span class="bottom-nav__text">Главная</span>
     </a>
-    <a href="#catalog" class="bottom-nav__item">
+    <a href="/catalog.html" class="bottom-nav__item">
       <span class="bottom-nav__text">Каталог</span>
     </a>
-    <a href="#cart" class="bottom-nav__item">
+    <a href="/cart.html" class="bottom-nav__item">
       <span class="bottom-nav__text">Корзина</span>
     </a>
     <a href="#account" class="bottom-nav__item">
@@ -399,7 +399,7 @@ main {
             
             <div style="display: flex; flex-direction: column; gap: 14px;">
               <!-- Товар 1 -->
-              <a class="product-item" href="/products/парацетамол.html">
+              <a class="product-item" href="/products/paracetamol.html">
                 <div class="product-content">
                   <div>
                     <div class="product-title">Парацетамол 500мг 20шт</div>
@@ -410,18 +410,18 @@ main {
               </a>
               
               <!-- Товар 2 -->
-              <a class="product-item" href="/products/левомеколь.html">
+              <a class="product-item" href="/products/levomekol.html">
                 <div class="product-content">
                   <div>
                     <div class="product-title">Левомеколь 40 мг 40г</div>
                     <div class="product-description">Ранозаживляющая мазь</div>
                   </div>
                   <div class="product-price">от 183₽</div>
-                </div>
+                </div> 
               </a>
               
               <!-- Товар 3 -->
-              <a class="product-item" href="/products/полисорб.html">
+              <a class="product-item" href="/products/polisorb.html">
                 <div class="product-content">
                   <div>
                     <div class="product-title">Полисорб 50г</div>
@@ -432,7 +432,7 @@ main {
               </a>
               
               <!-- Товар 4 -->
-              <a class="product-item" href="/products/супрастин.html">
+              <a class="product-item" href="/products/suprastin.html">
                 <div class="product-content">
                   <div>
                     <div class="product-title">Супрастин 25мг 20шт</div>
@@ -444,9 +444,10 @@ main {
             </div>
             
             <!-- Кнопка "Больше" - увеличенная как в оригинале -->
-            <button class="button button--primary" style="margin-top: 20px; width: 100%; text-align: center; display: block; border: none; font-size: 18px; padding: 18px 20px; min-height: 60px;">
+            <a href="/catalog.html" class="button button--primary" 
+                style="margin-top: 20px; width: 100%; text-align: center; display: block; font-size: 18px; padding: 18px 20px; min-height: 60px;">
               Больше →
-            </button>
+            </a>
           </aside>
         </div>
         
@@ -481,5 +482,25 @@ main {
       © 2026 Интернет-аптека. Все права защищены.
     </div>
   </footer>
+  <script>
+    function addToCart(product) {
+      const stored = localStorage.getItem("pharma_cart");
+      let cart = stored ? JSON.parse(stored) : [];
+
+      const existing = cart.find(item => item.id === product.id);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          id: product.id,
+          quantity: 1,
+          product: product
+      });
+    }
+
+    localStorage.setItem("pharma_cart", JSON.stringify(cart));
+  }
+  </script>
 </body>
 </html>
