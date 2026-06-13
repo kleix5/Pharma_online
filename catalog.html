@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Каталог товаров — Фарма-Сити</title>
+  <style>
+/* Нижнее меню */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 74px;
+  background: #302E8C;
+  backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+}
+
+.bottom-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #F0FFFF;
+  font-size: 18px;
+  transition: 0.2s ease;
+}
+
+.bottom-nav__item:hover {
+  color: #F0FFFF;
+  transform: translateY(-2px);
+}
+
+.bottom-nav__item.active {
+  color: #A7C7E7;
+}
+
+body {
+  padding-bottom: 90px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: century gothic, Helvetica, sans-serif;
+  line-height: 1.5;
+  color: #F8F8FF;
+  background: #191970;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #302E8C;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+/* Поиск в шапке */
+.header-search {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.header-search:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(147, 197, 253, 0.5);
+}
+
+.header-search-input {
+  background: transparent;
+  border: none;
+  padding: 10px 16px;
+  color: white;
+  font-size: 14px;
+  width: 220px;
+  outline: none;
+}
+
+.header-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.header-search-btn {
+  background: rgba(147, 197, 253, 0.2);
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #93c5fd;
+  transition: 0.2s;
+}
+
+.header-search-btn:hover {
+  background: #93c5fd;
+  color: #0f172a;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 850px) {
+  .header__inner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .header-search {
+    order: 3;
+    width: 100%;
+  }
+  
+  .header-search-input {
+    flex: 1;
+    width: auto;
+  }
+}
+
+/* Стили для каталога */
+.catalog {
+  padding: 30px 0 40px;
+}
+
+.catalog__title {
+  font-size: clamp(38px, 6vw, 72px);
+  margin-bottom: 32px;
+  line-height: 1.05;
+}
+
+.catalog__count {
+  color: #94a3b8;
+  font-size: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+  margin-bottom: 40px;
+}
+
+/* Карточка товара */
+.product-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  padding: 24px;
+  transition: all 0.25s ease;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(147, 197, 253, 0.5);
+}
+
+.product-card__title {
+  font-weight: 800;
+  font-size: 20px;
+  color: #F0FFFF;
+  margin-bottom: 8px;
+}
+
+.product-card__description {
+  font-size: 15px;
+  color: #F0FFFF;
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+.product-card__price {
+  font-size: 28px;
+  font-weight: 800;
+  color: #A7C7E7;
+  margin-bottom: 20px;
+}
+
+.product-card__old-price {
+  font-size: 16px;
+  color: #94a3b8;
+  text-decoration: line-through;
+  margin-left: 12px;
+  font-weight: normal;
+}
+
+.product-card__button {
+  width: 100%;
+  padding: 16px 20px;
+  background: #6495ED;
+  border: none;
+  border-radius: 14px;
+  color: #F0FFFF;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: inherit;
+  text-align: center;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.product-card__button:hover {
+  background: #7BA5F0;
+  transform: translateY(-2px);
+}
+
+.product-card__button.disabled {
+  background: rgba(100, 149, 237, 0.3);
+  cursor: default;
+}
+
+.product-card__button.disabled:hover {
+  background: rgba(100, 149, 237, 0.3);
+  transform: none;
+}
+
+.footer {
+  padding: 30px 0;
+  color: #94a3b8;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 30px;
+}
+
+@media (max-width: 850px) {
+  .catalog__grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .catalog {
+    padding-top: 20px;
+  }
+}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="/index.html">Фарма-Сити</a>
+      
+      <!-- БЛОК ПОИСКА (как в вашем файле, но без JS поиск не работает) -->
+      <div class="header-search">
+        <input type="text" class="header-search-input" placeholder="Поиск по сайту..." id="globalSearch">
+        <button class="header-search-btn">🔍</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Нижнее меню -->
+  <nav class="bottom-nav">
+    <a href="/index.html" class="bottom-nav__item">
+      <span class="bottom-nav__text">Главная</span>
+    </a>
+    <a href="/catalog.html" class="bottom-nav__item active">
+      <span class="bottom-nav__text">Каталог</span>
+    </a>
+    <a href="/cart.html" class="bottom-nav__item">
+      <span class="bottom-nav__text">Корзина</span>
+    </a>
+    <a href="#" class="bottom-nav__item">
+      <span class="bottom-nav__text">Аккаунт</span>
+    </a>
+  </nav>
+
+  <main>
+    <section class="catalog">
+      <div class="container">
+        <h1 class="catalog__title">Каталог товаров</h1>
+        
+        <div class="catalog__count">
+          Всего товаров: 15
+        </div>
+        
+        <div class="catalog__grid">
+          <!-- 1. Парацетамол -->
+          <a href="/products/paracetamol.html" class="product-card">
+            <div class="product-card__title">Парацетамол 500мг 20шт</div>
+            <div class="product-card__description">Жаропонижающее и обезболивающее средство</div>
+            <div class="product-card__price">от 87₽</div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'paracetamol',
+              title: 'Парацетамол 500мг 20шт',
+              desc: 'Жаропонижающее и обезболивающее средство',
+              price: 87
+            })">
+            🛒 В корзину
+            </button>
+          </a>
+          
+          <!-- 2. Левомеколь -->
+          <a href="/products/levomekol.html" class="product-card">
+            <div class="product-card__title">Левомеколь 40 мг 40г</div>
+            <div class="product-card__description">Ранозаживляющая мазь</div>
+            <div class="product-card__price">от 183₽</div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'levomekol',
+              title: 'Левомеколь 40 мг 40г',
+              desc: 'Ранозаживляющая мазь',
+              price: 183
+            })">
+            🛒 В корзину
+            </button>
+          </a>
+          
+          <!-- 3. Полисорб -->
+          <a href="/products/polisorb.html" class="product-card">
+            <div class="product-card__title">Полисорб 50г</div>
+            <div class="product-card__description">Энтеросорбирующее средство</div>
+            <div class="product-card__price">от 514₽ <span class="product-card__old-price">590₽</span></div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'polisorb',
+              title: 'Полисорб 50г',
+              desc: 'Энтеросорбирующее средство',
+              price: 590
+            })">
+            🛒 В корзину
+            </button>
+          </a>
+          
+          <!-- 4. Супрастин -->
+          <a href="/products/suprastin.html" class="product-card">
+            <div class="product-card__title">Супрастин 25мг 20шт</div>
+            <div class="product-card__description">Антигистаминный препарат</div>
+            <div class="product-card__price">от 110₽</div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'suprastin',
+              title: 'Супрастин 25мг 20шт',
+              desc: 'Антигистаминный препарат',
+              price: 110
+            })">
+            🛒 В корзину
+            </button> 
+          </a>
+          
+          <!-- 5. Ибупрофен -->
+          <div class="product-card">
+            <div class="product-card__title">Ибупрофен 400мг 20шт</div>
+            <div class="product-card__description">Нестероидное противовоспалительное средство</div>
+            <div class="product-card__price">от 125₽ <span class="product-card__old-price">150₽</span></div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'ibuprophen',
+              title: 'Ибупрофен 400мг 20шт',
+              desc: 'Нестероидное противовоспалительное средство',
+              price: 125
+            })">
+            🛒 В корзину
+            </button> 
+          </div>
+          
+          <!-- 6. Амоксициллин -->
+          <div class="product-card">
+            <div class="product-card__title">Амоксициллин 500мг 16шт</div>
+            <div class="product-card__description">Антибактериальное средство широкого спектра</div>
+            <div class="product-card__price">от 245₽ <span class="product-card__old-price">280₽</span></div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'amoksicillin',
+              title: 'Амоксициллин 500мг 16шт',
+              desc: 'Антибактериальное средство широкого спектра',
+              price: 245
+            })">
+            🛒 В корзину
+            </button>   
+          </div>
+          
+          <!-- 7. Витамин С -->
+          <div class="product-card">
+            <div class="product-card__title">Витамин С 500мг 20шт</div>
+            <div class="product-card__description">Для иммунитета</div>
+            <div class="product-card__price">от 89₽</div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'C',
+              title: 'Витамин С 500мг 20шт',
+              desc: 'Для иммунитета',
+              price: 89
+            })">
+            🛒 В корзину
+            </button>    
+          </div>
+          
+          <!-- 8. Но-шпа -->
+          <div class="product-card">
+            <div class="product-card__title">Но-шпа 40мг 24шт</div>
+            <div class="product-card__description">Спазмолитическое средство</div>
+            <div class="product-card__price">от 210₽</div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'noshpa',
+              title: 'Но-шпа 40мг 24шт',
+              desc: 'Спазмолитическое средство',
+              price: 210
+            })">
+            🛒 В корзину
+            </button>    
+          </div>
+          
+          <!-- 9. Мезим (нет в наличии) -->
+          <div class="product-card">
+            <div class="product-card__title">Мезим 10000 20шт</div>
+            <div class="product-card__description">Ферментный препарат для пищеварения</div>
+            <div class="product-card__price">от 195₽ <span class="product-card__old-price">230₽</span></div>
+            <span class="product-card__button disabled">❌ Нет в наличии</span>
+          </div>
+          
+          <!-- 10. Лоратадин -->
+          <div class="product-card">
+            <div class="product-card__title">Лоратадин 10мг 30шт</div>
+            <div class="product-card__description">От аллергии</div>
+            <div class="product-card__price">от 65₽</div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'loratadin',
+              title: 'Лоратадин 10мг 30шт',
+              desc: 'От аллергии',
+              price: 65
+            })">
+            🛒 В корзину
+            </button>   
+          </div>
+          
+          <!-- 11. Смекта -->
+          <div class="product-card">
+            <div class="product-card__title">Смекта 3г 10шт</div>
+            <div class="product-card__description">Противодиарейное средство</div>
+            <div class="product-card__price">от 280₽</div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'smekta',
+              title: 'Смекта 3г 10шт',
+              desc: 'Противодиарейное средство',
+              price: 280
+            })">
+            🛒 В корзину
+            </button>    
+          </div>
+          
+          <!-- 12. Аквадетрим -->
+          <div class="product-card">
+            <div class="product-card__title">Аквадетрим 15мл</div>
+            <div class="product-card__description">Витамин D3 для детей</div>
+            <div class="product-card__price">от 320₽ <span class="product-card__old-price">380₽</span></div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'akvadetrim',
+              title: 'Аквадетрим 15мл',
+              desc: 'Витамин D3 для детей',
+              price: 320
+            })">
+            🛒 В корзину
+            </button>   
+          </div>
+          
+          <!-- 13. Найз -->
+          <div class="product-card">
+            <div class="product-card__title">Найз 100мг 20шт</div>
+            <div class="product-card__description">Нестероидное противовоспалительное</div>
+            <div class="product-card__price">от 175₽</div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'naiz',
+              title: 'Найз 100мг 20шт',
+              desc: 'Нестероидное противовоспалительное',
+              price: 175
+            })">
+            🛒 В корзину
+            </button>    
+          </div>
+          
+          <!-- 14. Фенистил гель -->
+          <div class="product-card">
+            <div class="product-card__title">Фенистил гель 30г</div>
+            <div class="product-card__description">Гель от зуда</div>
+            <div class="product-card__price">от 390₽ <span class="product-card__old-price">450₽</span></div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'fenistil',
+              title: 'Фенистил гель 30г',
+              desc: 'Гель от зуда',
+              price: 390
+            })">
+            🛒 В корзину
+            </button>    
+          </div>
+          
+          <!-- 15. Хилак Форте -->
+          <div class="product-card">
+            <div class="product-card__title">Хилак Форте 30мл</div>
+            <div class="product-card__description">Для нормализации микрофлоры</div>
+            <div class="product-card__price">от 425₽</div>
+            <button class="product-card__button" onclick="addToCart({
+              id: 'hilak',
+              title: 'Хилак Форте 30мл',
+              desc: 'Для нормализации микрофлоры',
+              price: 425
+            })">
+            🛒 В корзину
+            </button>    
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Интернет-аптека. Все права защищены.
+    </div>
+  </footer>
+  <script>
+    function addToCart(product) {
+      const stored = localStorage.getItem("pharma_cart");
+      let cart = stored ? JSON.parse(stored) : [];
+
+      const existing = cart.find(item => item.id === product.id);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          id: product.id,
+          quantity: 1,
+          product: product
+      });
+    }
+
+    localStorage.setItem("pharma_cart", JSON.stringify(cart));
+  }
+  </script>
+</body>
+</html>
