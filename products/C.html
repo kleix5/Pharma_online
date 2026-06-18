@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Парацетамол 500 мг — Фарма-Сити</title>
-  <style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Парацетамол 500 мг — Фарма-Сити</title>
+    <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -315,39 +315,39 @@
     }
 
     /* нижнее меню */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 74px;
-  background: #302E8C;
-  backdrop-filter: blur(14px);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 1000;
-}
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 74px;
+      background: #302E8C;
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1000;
+    }
 
-.bottom-nav__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: #F0FFFF;
-  font-size: 18px;
-  transition: 0.2s ease;
-}
+    .bottom-nav__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: #F0FFFF;
+      font-size: 18px;
+      transition: 0.2s ease;
+    }
 
-.bottom-nav__item:hover {
-  color: #F0FFFF;
-  transform: translateY(-2px);
-}
+    .bottom-nav__item:hover {
+      color: #F0FFFF;
+      transform: translateY(-2px);
+    }
 
-.bottom-nav__item.active {
-  color: #A7C7E7;
-}
+    .bottom-nav__item.active {
+      color: #A7C7E7;
+    }
 
     /* футер */
     .footer {
@@ -401,153 +401,153 @@
         font-size: 16px;
       }
     }
-  </style>
-</head>
-<body>
+    </style>
+  </head>
+  <body>
 
-<header class="header">
-  <div class="container header__inner">
-    <a class="logo" href="/">Фарма-Сити</a>
-    <div class="header-search">
-      <input type="text" class="header-search-input" placeholder="Поиск по сайту...">
-      <button class="header-search-btn">🔍</button>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="/">Фарма-Сити</a>
+      <div class="header-search">
+        <input type="text" class="header-search-input" placeholder="Поиск по сайту...">
+        <button class="header-search-btn">🔍</button>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<main>
-  <div class="container product-page">
-    <div class="product-grid">
-      <!-- левая часть: изображение + надпись "Без рецепта" СЛЕВА -->
-      <div class="product-visual">
-        <div class="no-prescription">Без рецепта</div>
-        <div class="drug-image">
-          <img src="https://img.planetazdorovo.ru/upload//Photo_Tovar/49119403_1766060579.jpg" alt="Витамин С 500 мг 20 таблеток" 
-               onerror="this.src='https://placehold.co/400x400?text=Витамин+С+500+мг'">
+  <main>
+    <div class="container product-page">
+      <div class="product-grid">
+        <!-- левая часть: изображение + надпись "Без рецепта" СЛЕВА -->
+        <div class="product-visual">
+          <div class="no-prescription">Без рецепта</div>
+          <div class="drug-image">
+            <img src="https://img.planetazdorovo.ru/upload//Photo_Tovar/49119403_1766060579.jpg" alt="Витамин С 500 мг 20 таблеток" 
+                onerror="this.src='https://placehold.co/400x400?text=Витамин+С+500+мг'">
+          </div>
+        </div>
+
+        <!-- правая часть: информация о товаре -->
+        <div class="product-info">
+          <div class="product-category">ДОМИНАНТА-СЕРВИС · ФАРМАЦЕВТИКА</div>
+          <h1 class="product-name">Витамин С 500мг 20шт</h1>
+          <div class="substance">Действующее вещество: аскорбиновая кислота</div>
+
+          <div class="price-card">
+            <span class="current-price">89 ₽</span>
+          </div>
+
+          <!-- Только кнопка "В корзину" (без выбора количества) -->
+          <div class="cart-actions">
+            <button class="btn-cart" onclick="addToCartAndNotify(event)">
+              В корзину
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- правая часть: информация о товаре -->
-      <div class="product-info">
-        <div class="product-category">ДОМИНАНТА-СЕРВИС · ФАРМАЦЕВТИКА</div>
-        <h1 class="product-name">Витамин С 500мг 20шт</h1>
-        <div class="substance">Действующее вещество: аскорбиновая кислота</div>
-
-        <div class="price-card">
-          <span class="current-price">89 ₽</span>
+      <!-- Полное описание: состав, показания, противопоказания -->
+      <div class="full-description">
+        <div class="desc-section">
+          <h3>Описание</h3>
+          <p>500 мг витамина в форме таблеток для рассасывания.</p>
+          <p><strong>Форма выпуска:</strong> 20 таблеток, покрытые пленочной оболочкой массой 822 мг.</p>
+          <p><strong>Дозировка:</strong> 500 мг.</p>
         </div>
 
-        <!-- Только кнопка "В корзину" (без выбора количества) -->
-        <div class="cart-actions">
-          <button class="btn-cart" onclick="addToCartAndNotify(event)">
-            В корзину
-          </button>
+        <hr>
+
+        <div class="desc-section">
+          <h3>Состав</h3>
+          <p><strong>Активное вещество:</strong><br>Витамин С (аскорбиновая кислота).</p>
+          <p><strong>Вспомогательные вещества:</strong><br>Целлюлоза микрокристаллическая (Е460 – носитель), пленочное покрытие Opadry II 85F18422 белый: поливиниловый спирт, частично гидролизованный, титана диоксид (E171 – пленкообразователь), макрогол 4000 (Е1521 – пленкообразователь), тальк (Е553iii – пленкообразователь), диоксид кремния коллоидный безводный (Е551 – антислеживающий агент), магния стеарат (Е470 – антислеживающий агент), tartrazine (E102 – краситель), Sunset Yellow FSF (E110 – краситель), Brilliant Blu (E133 – краситель).</p>
+        </div>
+
+        <hr>
+
+        <div class="desc-section">
+          <h3>Показания к применению</h3>
+          <ul>
+            <li>Рекомендуется для профилактики состояний, связанных с дефицитом витамина С, для поддержания естественной устойчивости организма к инфекциям, уменьшения тяжести и продолжительности межсезонных заболеваний; при интенсивной умственной и физической нагрузке, а также людям, подверженным стрессовым ситуациям.</li>
+          </ul>
+        </div>
+
+        <hr>
+
+        <div class="desc-section">
+          <h3>Противопоказания</h3>
+          <ul>
+            <li>Повышенная чувствительность к компонентам препарата; не следует назначать большие дозы больным с повышенной свертываемостью крови, тромбофлебитами и склонностью к тромбозам.</li>
+          </ul>
         </div>
       </div>
     </div>
+  </main>
 
-    <!-- Полное описание: состав, показания, противопоказания -->
-    <div class="full-description">
-      <div class="desc-section">
-        <h3>Описание</h3>
-        <p>500 мг витамина в форме таблеток для рассасывания.</p>
-        <p><strong>Форма выпуска:</strong> 20 таблеток, покрытые пленочной оболочкой массой 822 мг.</p>
-        <p><strong>Дозировка:</strong> 500 мг.</p>
-      </div>
-
-      <hr>
-
-      <div class="desc-section">
-        <h3>Состав</h3>
-        <p><strong>Активное вещество:</strong><br>Витамин С (аскорбиновая кислота).</p>
-        <p><strong>Вспомогательные вещества:</strong><br>Целлюлоза микрокристаллическая (Е460 – носитель), пленочное покрытие Opadry II 85F18422 белый: поливиниловый спирт, частично гидролизованный, титана диоксид (E171 – пленкообразователь), макрогол 4000 (Е1521 – пленкообразователь), тальк (Е553iii – пленкообразователь), диоксид кремния коллоидный безводный (Е551 – антислеживающий агент), магния стеарат (Е470 – антислеживающий агент), tartrazine (E102 – краситель), Sunset Yellow FSF (E110 – краситель), Brilliant Blu (E133 – краситель).</p>
-      </div>
-
-      <hr>
-
-      <div class="desc-section">
-        <h3>Показания к применению</h3>
-        <ul>
-          <li>Рекомендуется для профилактики состояний, связанных с дефицитом витамина С, для поддержания естественной устойчивости организма к инфекциям, уменьшения тяжести и продолжительности межсезонных заболеваний; при интенсивной умственной и физической нагрузке, а также людям, подверженным стрессовым ситуациям.</li>
-        </ul>
-      </div>
-
-      <hr>
-
-      <div class="desc-section">
-        <h3>Противопоказания</h3>
-        <ul>
-          <li>Повышенная чувствительность к компонентам препарата; не следует назначать большие дозы больным с повышенной свертываемостью крови, тромбофлебитами и склонностью к тромбозам.</li>
-        </ul>
-      </div>
+  <!-- Футер -->
+  <footer class="footer">
+    <div class="container">
+      © 2026 Интернет-аптека. Все права защищены.
     </div>
-  </div>
-</main>
+  </footer>
 
-<!-- Футер -->
-<footer class="footer">
-  <div class="container">
-    © 2026 Интернет-аптека. Все права защищены.
-  </div>
-</footer>
-
-<!-- Нижнее меню (без эмодзи) -->
-  <nav class="bottom-nav">
-    <a href="/index.html" class="bottom-nav__item">
-      <span class="bottom-nav__text">Главная</span>
-    </a>
-    <a href="/catalog.html" class="bottom-nav__item active">
-      <span class="bottom-nav__text">Каталог</span>
-    </a>
-    <a href="/cart.html" class="bottom-nav__item">
-      <span class="bottom-nav__text">Корзина</span>
-    </a>
-    <a href="#" class="bottom-nav__item">
-      <span class="bottom-nav__text">Аккаунт</span>
-    </a>
-  </nav>
-<script>
-  // Функция добавления товара в корзину (совместима с catalog.html и cart.html)
-  function addToCartAndNotify(event) {
-    const button = event.currentTarget;
-    const product = {
+  <!-- Нижнее меню (без эмодзи) -->
+    <nav class="bottom-nav">
+      <a href="/index.html" class="bottom-nav__item">
+        <span class="bottom-nav__text">Главная</span>
+      </a>
+      <a href="/catalog.html" class="bottom-nav__item active">
+        <span class="bottom-nav__text">Каталог</span>
+      </a>
+      <a href="/cart.html" class="bottom-nav__item">
+        <span class="bottom-nav__text">Корзина</span>
+      </a>
+      <a href="#" class="bottom-nav__item">
+        <span class="bottom-nav__text">Аккаунт</span>
+      </a>
+    </nav>
+    <script>
+    // Функция добавления товара в корзину (совместима с catalog.html и cart.html)
+    function addToCartAndNotify(event) {
+      const button = event.currentTarget;
+      const product = {
         id: 'C',
         title: 'Витамин С 500мг 20шт',
         desc: 'Для иммунитета',
         price: 89
-    };
+      };
 
-    // Получаем текущую корзину из localStorage
-    const stored = localStorage.getItem('pharma_cart');
-    let cart = stored ? JSON.parse(stored) : [];
+      // Получаем текущую корзину из localStorage
+      const stored = localStorage.getItem('pharma_cart');
+      let cart = stored ? JSON.parse(stored) : [];
 
-    // Проверяем, есть ли уже такой товар
-    const existing = cart.find(item => item.id === product.id);
+      // Проверяем, есть ли уже такой товар
+      const existing = cart.find(item => item.id === product.id);
 
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({
-        id: product.id,
-        quantity: 1,
-        product: product
-      });
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          id: product.id,
+          quantity: 1,
+          product: product
+        });
+      }
+
+      // Сохраняем обратно в localStorage
+      localStorage.setItem('pharma_cart', JSON.stringify(cart));
+
+      // Визуальный фидбек
+      button.style.transform = 'scale(0.97)';
+      button.innerHTML = '✓ Добавлено!';
+      setTimeout(() => {
+        button.style.transform = '';
+        button.innerHTML = 'В корзину';
+      }, 800);
+
+      // Показываем уведомление
+      alert('✓ Витамин С 500 мг добавлен в корзину!');
     }
-
-    // Сохраняем обратно в localStorage
-    localStorage.setItem('pharma_cart', JSON.stringify(cart));
-
-    // Визуальный фидбек
-    button.style.transform = 'scale(0.97)';
-    button.innerHTML = '✓ Добавлено!';
-    setTimeout(() => {
-      button.style.transform = '';
-      button.innerHTML = 'В корзину';
-    }, 800);
-
-    // Показываем уведомление
-    alert('✓ Витамин С 500 мг добавлен в корзину!');
-  }
-</script>
-</body>
+    </script>
+  </body>
 </html>

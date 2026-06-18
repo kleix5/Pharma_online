@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Парацетамол 500 мг — Фарма-Сити</title>
-  <style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Парацетамол 500 мг — Фарма-Сити</title>
+    <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -315,39 +315,39 @@
     }
 
     /* нижнее меню */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 74px;
-  background: #302E8C;
-  backdrop-filter: blur(14px);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 1000;
-}
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 74px;
+      background: #302E8C;
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1000;
+    }
 
-.bottom-nav__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: #F0FFFF;
-  font-size: 18px;
-  transition: 0.2s ease;
-}
+    .bottom-nav__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: #F0FFFF;
+      font-size: 18px;
+      transition: 0.2s ease;
+    }
 
-.bottom-nav__item:hover {
-  color: #F0FFFF;
-  transform: translateY(-2px);
-}
+    .bottom-nav__item:hover {
+      color: #F0FFFF;
+      transform: translateY(-2px);
+    }
 
-.bottom-nav__item.active {
-  color: #A7C7E7;
-}
+    .bottom-nav__item.active {
+      color: #A7C7E7;
+    }
 
     /* футер */
     .footer {
@@ -401,159 +401,159 @@
         font-size: 16px;
       }
     }
-  </style>
-</head>
-<body>
+    </style>
+  </head>
+  <body>
 
-<header class="header">
-  <div class="container header__inner">
-    <a class="logo" href="/">Фарма-Сити</a>
-    <div class="header-search">
-      <input type="text" class="header-search-input" placeholder="Поиск по сайту...">
-      <button class="header-search-btn">🔍</button>
-    </div>
-  </div>
-</header>
-
-<main>
-  <div class="container product-page">
-    <div class="product-grid">
-      <!-- левая часть: изображение + надпись "Без рецепта" СЛЕВА -->
-      <div class="product-visual">
-        <div class="no-prescription">Без рецепта</div>
-        <div class="drug-image">
-          <img src="https://img.planetazdorovo.ru/upload//Photo_Tovar/46834603_1777373041.jpg" alt="Ибупрофен 400 мг 20 таблеток" 
-               onerror="this.src='https://placehold.co/400x400?text=Ибупрофен+400+мг'">
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="/">Фарма-Сити</a>
+        <div class="header-search">
+          <input type="text" class="header-search-input" placeholder="Поиск по сайту...">
+          <button class="header-search-btn">🔍</button>
         </div>
       </div>
+    </header>
 
-      <!-- правая часть: информация о товаре -->
-      <div class="product-info">
-        <div class="product-category">ШРЕЯ · ФАРМАЦЕВТИКА</div>
-        <h1 class="product-name">Ибупрофен 400мг 20шт</h1>
-        <div class="substance">Действующее вещество: ибупрофен 400 мг</div>
+    <main>
+      <div class="container product-page">
+        <div class="product-grid">
+          <!-- левая часть: изображение + надпись "Без рецепта" СЛЕВА -->
+          <div class="product-visual">
+            <div class="no-prescription">Без рецепта</div>
+            <div class="drug-image">
+              <img src="https://img.planetazdorovo.ru/upload//Photo_Tovar/46834603_1777373041.jpg" alt="Ибупрофен 400 мг 20 таблеток" 
+                  onerror="this.src='https://placehold.co/400x400?text=Ибупрофен+400+мг'">
+            </div>
+          </div>
 
-        <div class="price-card">
-          <span class="current-price">131 ₽</span>
+          <!-- правая часть: информация о товаре -->
+          <div class="product-info">
+            <div class="product-category">ШРЕЯ · ФАРМАЦЕВТИКА</div>
+            <h1 class="product-name">Ибупрофен 400мг 20шт</h1>
+            <div class="substance">Действующее вещество: ибупрофен 400 мг</div>
+
+            <div class="price-card">
+              <span class="current-price">131 ₽</span>
+            </div>
+
+            <!-- Только кнопка "В корзину" (без выбора количества) -->
+            <div class="cart-actions">
+              <button class="btn-cart" onclick="addToCartAndNotify(event)">
+                В корзину
+              </button>
+            </div>
+          </div>
         </div>
 
-        <!-- Только кнопка "В корзину" (без выбора количества) -->
-        <div class="cart-actions">
-          <button class="btn-cart" onclick="addToCartAndNotify(event)">
-            В корзину
-          </button>
+        <!-- Полное описание: состав, показания, противопоказания -->
+        <div class="full-description">
+          <div class="desc-section">
+            <h3>Описание</h3>
+            <p>Таблетки, покрытые пленочной оболочкой.</p>
+            <p><strong>Форма выпуска:</strong> По 10 таблеток в блистер из ПВХ/ПВДХ и фольги Al. По 2 блистера вместе с инструкцией по медицинскому применению помещают в картонную пачку.</p>
+            <p><strong>Дозировка:</strong> 400 мг.</p>
+          </div>
+
+          <hr>
+
+          <div class="desc-section">
+            <h3>Состав</h3>
+            <p><strong>Активное вещество:</strong><br>1 таблетка, покрытая пленочной оболочкой, содержит: ибупрофен 400,0 мг.</p>
+            <p><strong>Вспомогательные вещества:</strong><br>Повидон К-90, целлюлоза микрокристаллическая (тип 102), тальк, кросповидон (коллидон CL), кальция стеарат, кремния диоксид коллоидный (аэросил), крахмал кукурузный.</p>
+          </div>
+
+          <hr>
+
+          <div class="desc-section">
+            <h3>Показания к применению</h3>
+            <ul>
+              <li>Препарат Ибупрофен показан к применению у взрослых и детей в возрасте от 12 до 18 лет при головной и зубной боли, мигрени, болезненных менструациях, невралгии, боли в спине, боли в суставах, мышечных и ревматических болях; а также при лихорадочном состоянии при гриппе и простудных заболеваниях.</li>
+            </ul>
+          </div>
+
+          <hr>
+
+          <div class="desc-section">
+            <h3>Противопоказания</h3>
+            <p><strong>Противопоказания:</strong></p>
+            <ul>
+              <li>Гиперчувствительность к ибупрофену или любому из компонентов, входящих в состав препарата;</li>
+              <li>Тяжелая печеночная недостаточность или заболевание печени в активной фазе;</li>
+              <li>Беременность в сроке до 20 недель;</li>
+              <li>Детский возраст до 12 лет.</li>
+            </ul>
+            <p><strong>С осторожностью:</strong><br>Одновременный прием других НПВП, наличие в анамнезе однократного эпизода язвенной болезни желудка и двенадцатиперстной кишки или язвенного кровотечения ЖКТ.</p>
+            <p style="margin-top: 10px;">В этих случаях перед приемом препарата следует проконсультироваться с врачом.</p>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
 
-    <!-- Полное описание: состав, показания, противопоказания -->
-    <div class="full-description">
-      <div class="desc-section">
-        <h3>Описание</h3>
-        <p>Таблетки, покрытые пленочной оболочкой.</p>
-        <p><strong>Форма выпуска:</strong> По 10 таблеток в блистер из ПВХ/ПВДХ и фольги Al. По 2 блистера вместе с инструкцией по медицинскому применению помещают в картонную пачку.</p>
-        <p><strong>Дозировка:</strong> 400 мг.</p>
+    <!-- Футер -->
+    <footer class="footer">
+      <div class="container">
+        © 2026 Интернет-аптека. Все права защищены.
       </div>
+    </footer>
 
-      <hr>
+    <!-- Нижнее меню (без эмодзи) -->
+      <nav class="bottom-nav">
+        <a href="/index.html" class="bottom-nav__item">
+          <span class="bottom-nav__text">Главная</span>
+        </a>
+        <a href="/catalog.html" class="bottom-nav__item active">
+          <span class="bottom-nav__text">Каталог</span>
+        </a>
+        <a href="/cart.html" class="bottom-nav__item">
+          <span class="bottom-nav__text">Корзина</span>
+        </a>
+        <a href="#" class="bottom-nav__item">
+          <span class="bottom-nav__text">Аккаунт</span>
+        </a>
+      </nav>
+    <script>
+    // Функция добавления товара в корзину (совместима с catalog.html и cart.html)
+    function addToCartAndNotify(event) {
+      const button = event.currentTarget;
+      const product = {
+        id: 'ibuprophen',
+        title: 'Ибупрофен 400мг 20шт',
+        desc: 'Нестероидное противовоспалительное средство',
+        price: 125 // актуальная цена со страницы
+      };
 
-      <div class="desc-section">
-        <h3>Состав</h3>
-        <p><strong>Активное вещество:</strong><br>1 таблетка, покрытая пленочной оболочкой, содержит: ибупрофен 400,0 мг.</p>
-        <p><strong>Вспомогательные вещества:</strong><br>Повидон К-90, целлюлоза микрокристаллическая (тип 102), тальк, кросповидон (коллидон CL), кальция стеарат, кремния диоксид коллоидный (аэросил), крахмал кукурузный.</p>
-      </div>
+      // Получаем текущую корзину из localStorage
+      const stored = localStorage.getItem('pharma_cart');
+      let cart = stored ? JSON.parse(stored) : [];
 
-      <hr>
+      // Проверяем, есть ли уже такой товар
+      const existing = cart.find(item => item.id === product.id);
 
-      <div class="desc-section">
-        <h3>Показания к применению</h3>
-        <ul>
-          <li>Препарат Ибупрофен показан к применению у взрослых и детей в возрасте от 12 до 18 лет при головной и зубной боли, мигрени, болезненных менструациях, невралгии, боли в спине, боли в суставах, мышечных и ревматических болях; а также при лихорадочном состоянии при гриппе и простудных заболеваниях.</li>
-        </ul>
-      </div>
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          id: product.id,
+          quantity: 1,
+          product: product
+        });
+      }
 
-      <hr>
+      // Сохраняем обратно в localStorage
+      localStorage.setItem('pharma_cart', JSON.stringify(cart));
 
-      <div class="desc-section">
-        <h3>Противопоказания</h3>
-        <p><strong>Противопоказания:</strong></p>
-        <ul>
-          <li>Гиперчувствительность к ибупрофену или любому из компонентов, входящих в состав препарата;</li>
-          <li>Тяжелая печеночная недостаточность или заболевание печени в активной фазе;</li>
-          <li>Беременность в сроке до 20 недель;</li>
-          <li>Детский возраст до 12 лет.</li>
-        </ul>
-        <p><strong>С осторожностью:</strong><br>Одновременный прием других НПВП, наличие в анамнезе однократного эпизода язвенной болезни желудка и двенадцатиперстной кишки или язвенного кровотечения ЖКТ.</p>
-        <p style="margin-top: 10px;">В этих случаях перед приемом препарата следует проконсультироваться с врачом.</p>
-      </div>
-    </div>
-  </div>
-</main>
+      // Визуальный фидбек
+      button.style.transform = 'scale(0.97)';
+      button.innerHTML = '✓ Добавлено!';
+      setTimeout(() => {
+        button.style.transform = '';
+        button.innerHTML = 'В корзину';
+      }, 800);
 
-<!-- Футер -->
-<footer class="footer">
-  <div class="container">
-    © 2026 Интернет-аптека. Все права защищены.
-  </div>
-</footer>
-
-<!-- Нижнее меню (без эмодзи) -->
-  <nav class="bottom-nav">
-    <a href="/index.html" class="bottom-nav__item">
-      <span class="bottom-nav__text">Главная</span>
-    </a>
-    <a href="/catalog.html" class="bottom-nav__item active">
-      <span class="bottom-nav__text">Каталог</span>
-    </a>
-    <a href="/cart.html" class="bottom-nav__item">
-      <span class="bottom-nav__text">Корзина</span>
-    </a>
-    <a href="#" class="bottom-nav__item">
-      <span class="bottom-nav__text">Аккаунт</span>
-    </a>
-  </nav>
-<script>
-  // Функция добавления товара в корзину (совместима с catalog.html и cart.html)
-  function addToCartAndNotify(event) {
-    const button = event.currentTarget;
-    const product = {
-      id: 'ibuprophen',
-      title: 'Ибупрофен 400мг 20шт',
-      desc: 'Нестероидное противовоспалительное средство',
-      price: 125 // актуальная цена со страницы
-    };
-
-    // Получаем текущую корзину из localStorage
-    const stored = localStorage.getItem('pharma_cart');
-    let cart = stored ? JSON.parse(stored) : [];
-
-    // Проверяем, есть ли уже такой товар
-    const existing = cart.find(item => item.id === product.id);
-
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({
-        id: product.id,
-        quantity: 1,
-        product: product
-      });
+      // Показываем уведомление
+      alert('✓ Ибупрофен 400 мг добавлен в корзину!');
     }
-
-    // Сохраняем обратно в localStorage
-    localStorage.setItem('pharma_cart', JSON.stringify(cart));
-
-    // Визуальный фидбек
-    button.style.transform = 'scale(0.97)';
-    button.innerHTML = '✓ Добавлено!';
-    setTimeout(() => {
-      button.style.transform = '';
-      button.innerHTML = 'В корзину';
-    }, 800);
-
-    // Показываем уведомление
-    alert('✓ Ибупрофен 400 мг добавлен в корзину!');
-  }
-</script>
-</body>
+    </script>
+  </body>
 </html>
