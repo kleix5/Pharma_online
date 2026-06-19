@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Супрастин 20 шт — Фарма-Сити</title>
-  <style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Супрастин 20 шт — Фарма-Сити</title>
+    <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -315,39 +315,39 @@
     }
 
     /* нижнее меню */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 74px;
-  background: #302E8C;
-  backdrop-filter: blur(14px);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 1000;
-}
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 74px;
+      background: #302E8C;
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1000;
+    }
 
-.bottom-nav__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: #F0FFFF;
-  font-size: 18px;
-  transition: 0.2s ease;
-}
+    .bottom-nav__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: #F0FFFF;
+      font-size: 18px;
+      transition: 0.2s ease;
+    }
 
-.bottom-nav__item:hover {
-  color: #F0FFFF;
-  transform: translateY(-2px);
-}
+    .bottom-nav__item:hover {
+      color: #F0FFFF;
+      transform: translateY(-2px);
+    }
 
-.bottom-nav__item.active {
-  color: #A7C7E7;
-}
+    .bottom-nav__item.active {
+      color: #A7C7E7;
+    }
 
     /* футер */
     .footer {
@@ -401,160 +401,160 @@
         font-size: 16px;
       }
     }
-  </style>
-</head>
-<body>
+    </style>
+  </head>
+  <body>
 
-<header class="header">
-  <div class="container header__inner">
-    <a class="logo" href="/">Фарма-Сити</a>
-    <div class="header-search">
-      <input type="text" class="header-search-input" placeholder="Поиск по сайту...">
-      <button class="header-search-btn">🔍</button>
-    </div>
-  </div>
-</header>
-
-<main>
-  <div class="container product-page">
-    <div class="product-grid">
-      <!-- левая часть: изображение + надпись "Без рецепта" СЛЕВА -->
-      <div class="product-visual">
-        <div class="no-prescription">Без рецепта</div>
-        <div class="drug-image">
-          <img src=https://media.uteka.ru/media/768/1/c8/1c86adcdfb38f9c4e60326abea11c57d.jpg alt="Супрастин 25 мг 20 шт" 
-               onerror="this.src='https://placehold.co/400x400?text=Супрастин+25+мг'">
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="/">Фарма-Сити</a>
+        <div class="header-search">
+          <input type="text" class="header-search-input" placeholder="Поиск по сайту...">
+          <button class="header-search-btn">🔍</button>
         </div>
       </div>
+    </header>
 
-      <!-- правая часть: информация о товаре -->
-      <div class="product-info">
-        <div class="product-category">ЭГИС РУС · ФАРМАЦЕВТИКА</div>
-        <h1 class="product-name">Супрастин 25 мг 20 шт</h1>
-        <div class="substance">Действующее вещество: хлоропирамин</div>
+    <main>
+      <div class="container product-page">
+        <div class="product-grid">
+          <!-- левая часть: изображение + надпись "Без рецепта" СЛЕВА -->
+          <div class="product-visual">
+            <div class="no-prescription">Без рецепта</div>
+            <div class="drug-image">
+              <img src=https://media.uteka.ru/media/768/1/c8/1c86adcdfb38f9c4e60326abea11c57d.jpg alt="Супрастин 25 мг 20 шт" 
+                  onerror="this.src='https://placehold.co/400x400?text=Супрастин+25+мг'">
+            </div>
+          </div>
 
-        <div class="price-card">
-          <span class="current-price">110 ₽</span>
-          <span class="old-price">147 ₽</span>
-          <span class="saving">−26%</span>
+          <!-- правая часть: информация о товаре -->
+          <div class="product-info">
+            <div class="product-category">ЭГИС РУС · ФАРМАЦЕВТИКА</div>
+            <h1 class="product-name">Супрастин 25 мг 20 шт</h1>
+            <div class="substance">Действующее вещество: хлоропирамин</div>
+
+            <div class="price-card">
+              <span class="current-price">110 ₽</span>
+              <span class="old-price">147 ₽</span>
+              <span class="saving">−26%</span>
+            </div>
+
+            <!-- Только кнопка "В корзину" (без выбора количества) -->
+            <div class="cart-actions">
+              <button class="btn-cart" onclick="addToCartAndNotify(event)">
+                В корзину
+              </button>
+            </div>
+          </div>
         </div>
 
-        <!-- Только кнопка "В корзину" (без выбора количества) -->
-        <div class="cart-actions">
-          <button class="btn-cart" onclick="addToCartAndNotify(event)">
-            В корзину
-          </button>
+        <!-- Полное описание: состав, показания, противопоказания -->
+        <div class="full-description">
+          <div class="desc-section">
+            <h3>Описание</h3>
+            <p>Белые, или серовато-белые таблетки в виде диска с фаской, с гравировкой “SUPRASTIN” на одной стороне таблетки и риской на другой стороне, без или почти без запаха.</p>
+            <p><strong>Форма выпуска:</strong> Таблетки по 25 мг. По 10 таблеток в блистере из ПВХ/ПВДХ/ал.фольга. По 2 блистера в картонной пачке вместе с инструкцией по медицинскому применению.</p>
+          </div>
+
+          <hr>
+
+          <div class="desc-section">
+            <h3>Состав</h3>
+            <p><strong>Активное вещество:</strong><br> 1 таблетка содержит: хлоропирамина гидрохлорида- 25 мг.</p>
+            <p><strong>Вспомогательные вещества:</strong><br> стеариновая кислота, желатин, натрия карбоксиметил крахмал (тип А), тальк, крахмал картофельный, лактозы моногидрат (116 мг).</p>
+          </div>
+
+          <hr>
+
+          <div class="desc-section">
+            <h3>Показания к применению</h3>
+            <ul>
+              <li>Крапивница, сывороточная болезнь, сезонный и круглогодичный аллергический ринит, аллергический конъюнктивит, контактный дерматит, кожный зуд, острая и хроническая экзема, атопический дерматит, пищевая и лекарственная аллергия, аллергические реакции на укусы насекомых.</li>
+            </ul>
+          </div>
+
+          <hr>
+
+          <div class="desc-section">
+            <h3>Противопоказания</h3>
+            <p><strong>Противопоказания:</strong></p>
+            <ul>
+              <li>Повышенная чувствительность к компонентам препарата;</li>
+              <li>Острый приступ бронхиальной астмы;</li>
+              <li>Детский возраст до 3-х лет (для данной лекарственной формы);</li>
+              <li>Беременность и период лактации;</li>
+              <li>Дефицит лактазы, непереносимость лактозы, глюкозо/галактозная мальабсорбция (так как таблетка содержит 116 мг лактозы моногидрата).</li>
+            </ul>
+            <p><strong>С осторожностью:</strong><br>Пациентам пожилого возраста, а также при нарушении функции печени и/или почек, сердечно-сосудистой системы, при закрытоугольной глаукоме, задержке мочи, гиперплазии предстательной железы.</p>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
 
-    <!-- Полное описание: состав, показания, противопоказания -->
-    <div class="full-description">
-      <div class="desc-section">
-        <h3>Описание</h3>
-        <p>Белые, или серовато-белые таблетки в виде диска с фаской, с гравировкой “SUPRASTIN” на одной стороне таблетки и риской на другой стороне, без или почти без запаха.</p>
-        <p><strong>Форма выпуска:</strong> Таблетки по 25 мг. По 10 таблеток в блистере из ПВХ/ПВДХ/ал.фольга. По 2 блистера в картонной пачке вместе с инструкцией по медицинскому применению.</p>
+    <!-- Футер -->
+    <footer class="footer">
+      <div class="container">
+        © 2026 Интернет-аптека. Все права защищены.
       </div>
+    </footer>
 
-      <hr>
+    <!-- Нижнее меню (без эмодзи) -->
+      <nav class="bottom-nav">
+        <a href="/index.html" class="bottom-nav__item">
+          <span class="bottom-nav__text">Главная</span>
+        </a>
+        <a href="/catalog.html" class="bottom-nav__item active">
+          <span class="bottom-nav__text">Каталог</span>
+        </a>
+        <a href="/cart.html" class="bottom-nav__item">
+          <span class="bottom-nav__text">Корзина</span>
+        </a>
+        <a href="#" class="bottom-nav__item">
+          <span class="bottom-nav__text">Аккаунт</span>
+        </a>
+      </nav>
+    <script>
+    // Функция добавления товара в корзину (совместима с catalog.html и cart.html)
+    function addToCartAndNotify(event) {
+      const button = event.currentTarget;
+      const product = {
+        id: 'suprastin',
+        title: 'Супрастин 25мг 20шт',
+        desc: 'Антигистаминный препарат',
+        price: 110
+      };
 
-      <div class="desc-section">
-        <h3>Состав</h3>
-        <p><strong>Активное вещество:</strong><br> 1 таблетка содержит: хлоропирамина гидрохлорида- 25 мг.</p>
-        <p><strong>Вспомогательные вещества:</strong><br> стеариновая кислота, желатин, натрия карбоксиметил крахмал (тип А), тальк, крахмал картофельный, лактозы моногидрат (116 мг).</p>
-      </div>
+      // Получаем текущую корзину из localStorage
+      const stored = localStorage.getItem('pharma_cart');
+      let cart = stored ? JSON.parse(stored) : [];
 
-      <hr>
+      // Проверяем, есть ли уже такой товар
+      const existing = cart.find(item => item.id === product.id);
 
-      <div class="desc-section">
-        <h3>Показания к применению</h3>
-        <ul>
-          <li>Крапивница, сывороточная болезнь, сезонный и круглогодичный аллергический ринит, аллергический конъюнктивит, контактный дерматит, кожный зуд, острая и хроническая экзема, атопический дерматит, пищевая и лекарственная аллергия, аллергические реакции на укусы насекомых.</li>
-        </ul>
-      </div>
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          id: product.id,
+          quantity: 1,
+          product: product
+        });
+      }
 
-      <hr>
+      // Сохраняем обратно в localStorage
+      localStorage.setItem('pharma_cart', JSON.stringify(cart));
 
-      <div class="desc-section">
-        <h3>Противопоказания</h3>
-        <p><strong>Противопоказания:</strong></p>
-        <ul>
-          <li>Повышенная чувствительность к компонентам препарата;</li>
-          <li>Острый приступ бронхиальной астмы;</li>
-          <li>Детский возраст до 3-х лет (для данной лекарственной формы);</li>
-          <li>Беременность и период лактации;</li>
-          <li>Дефицит лактазы, непереносимость лактозы, глюкозо/галактозная мальабсорбция (так как таблетка содержит 116 мг лактозы моногидрата).</li>
-        </ul>
-         <p><strong>С осторожностью:</strong><br>Пациентам пожилого возраста, а также при нарушении функции печени и/или почек, сердечно-сосудистой системы, при закрытоугольной глаукоме, задержке мочи, гиперплазии предстательной железы.</p>
-      </div>
-    </div>
-  </div>
-</main>
+      // Визуальный фидбек
+      button.style.transform = 'scale(0.97)';
+      button.innerHTML = '✓ Добавлено!';
+      setTimeout(() => {
+        button.style.transform = '';
+        button.innerHTML = 'В корзину';
+      }, 800);
 
-<!-- Футер -->
-<footer class="footer">
-  <div class="container">
-    © 2026 Интернет-аптека. Все права защищены.
-  </div>
-</footer>
-
-<!-- Нижнее меню (без эмодзи) -->
-  <nav class="bottom-nav">
-    <a href="/index.html" class="bottom-nav__item">
-      <span class="bottom-nav__text">Главная</span>
-    </a>
-    <a href="/catalog.html" class="bottom-nav__item active">
-      <span class="bottom-nav__text">Каталог</span>
-    </a>
-    <a href="/cart.html" class="bottom-nav__item">
-      <span class="bottom-nav__text">Корзина</span>
-    </a>
-    <a href="#" class="bottom-nav__item">
-      <span class="bottom-nav__text">Аккаунт</span>
-    </a>
-  </nav>
-<script>
-  // Функция добавления товара в корзину (совместима с catalog.html и cart.html)
-  function addToCartAndNotify(event) {
-    const button = event.currentTarget;
-    const product = {
-      id: 'suprastin',
-      title: 'Супрастин 25мг 20шт',
-      desc: 'Антигистаминный препарат',
-      price: 110
-    };
-
-    // Получаем текущую корзину из localStorage
-    const stored = localStorage.getItem('pharma_cart');
-    let cart = stored ? JSON.parse(stored) : [];
-
-    // Проверяем, есть ли уже такой товар
-    const existing = cart.find(item => item.id === product.id);
-
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({
-        id: product.id,
-        quantity: 1,
-        product: product
-      });
+      // Показываем уведомление
+      alert('✓ Супрастин 25 мг добавлен в корзину!');
     }
-
-    // Сохраняем обратно в localStorage
-    localStorage.setItem('pharma_cart', JSON.stringify(cart));
-
-    // Визуальный фидбек
-    button.style.transform = 'scale(0.97)';
-    button.innerHTML = '✓ Добавлено!';
-    setTimeout(() => {
-      button.style.transform = '';
-      button.innerHTML = 'В корзину';
-    }, 800);
-
-    // Показываем уведомление
-    alert('✓ Супрастин 25 мг добавлен в корзину!');
-  }
-</script>
-</body>
+    </script>
+  </body>
 </html>

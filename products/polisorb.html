@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Полисорб 25 гр — Фарма-Сити</title>
-  <style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Полисорб 25 гр — Фарма-Сити</title>
+    <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -315,39 +315,39 @@
     }
 
     /* нижнее меню */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 74px;
-  background: #302E8C;
-  backdrop-filter: blur(14px);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 1000;
-}
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 74px;
+      background: #302E8C;
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1000;
+    }
 
-.bottom-nav__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: #F0FFFF;
-  font-size: 18px;
-  transition: 0.2s ease;
-}
+    .bottom-nav__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: #F0FFFF;
+      font-size: 18px;
+      transition: 0.2s ease;
+    }
 
-.bottom-nav__item:hover {
-  color: #F0FFFF;
-  transform: translateY(-2px);
-}
+    .bottom-nav__item:hover {
+      color: #F0FFFF;
+      transform: translateY(-2px);
+    }
 
-.bottom-nav__item.active {
-  color: #A7C7E7;
-}
+    .bottom-nav__item.active {
+      color: #A7C7E7;
+    }
     /* футер */
     .footer {
       padding: 30px 0;
@@ -400,162 +400,162 @@
         font-size: 16px;
       }
     }
-  </style>
-</head>
-<body>
+    </style>
+  </head>
+  <body>
 
-<header class="header">
-  <div class="container header__inner">
-    <a class="logo" href="/">Фарма-Сити</a>
-    <div class="header-search">
-      <input type="text" class="header-search-input" placeholder="Поиск по сайту...">
-      <button class="header-search-btn">🔍</button>
-    </div>
-  </div>
-</header>
-
-<main>
-  <div class="container product-page">
-    <div class="product-grid">
-      <!-- левая часть: изображение + надпись "Без рецепта" СЛЕВА -->
-      <div class="product-visual">
-        <div class="no-prescription">Без рецепта</div>
-        <div class="drug-image">
-          <img src=https://photo.monastirev.ru/s/gi/prod/00/00/21/88/90/polisorb-mp-600x600.JPG alt="Полисорб 25 гр" 
-               onerror="this.src='https://placehold.co/400x400?text=Полисорб'">
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="/">Фарма-Сити</a>
+        <div class="header-search">
+          <input type="text" class="header-search-input" placeholder="Поиск по сайту...">
+          <button class="header-search-btn">🔍</button>
         </div>
       </div>
+    </header>
 
-      <!-- правая часть: информация о товаре -->
-      <div class="product-info">
-        <div class="product-category">ПОЛИСОРБ · ФАРМАЦЕВТИКА</div>
-        <h1 class="product-name">Полисорб 25 гр</h1>
-        <div class="substance">Действующее вещество: кремния диоксид коллоидный</div>
+    <main>
+      <div class="container product-page">
+        <div class="product-grid">
+          <!-- левая часть: изображение + надпись "Без рецепта" СЛЕВА -->
+          <div class="product-visual">
+            <div class="no-prescription">Без рецепта</div>
+            <div class="drug-image">
+              <img src=https://photo.monastirev.ru/s/gi/prod/00/00/21/88/90/polisorb-mp-600x600.JPG alt="Полисорб 25 гр" 
+                  onerror="this.src='https://placehold.co/400x400?text=Полисорб'">
+            </div>
+          </div>
 
-        <div class="price-card">
-          <span class="current-price">514 ₽</span>
-          <span class="old-price">644 ₽</span>
-          <span class="saving">−20%</span>
+          <!-- правая часть: информация о товаре -->
+          <div class="product-info">
+            <div class="product-category">ПОЛИСОРБ · ФАРМАЦЕВТИКА</div>
+            <h1 class="product-name">Полисорб 25 гр</h1>
+            <div class="substance">Действующее вещество: кремния диоксид коллоидный</div>
+
+            <div class="price-card">
+              <span class="current-price">514 ₽</span>
+              <span class="old-price">644 ₽</span>
+              <span class="saving">−20%</span>
+            </div>
+
+            <!-- Только кнопка "В корзину" (без выбора количества) -->
+            <div class="cart-actions">
+              <button class="btn-cart" onclick="addToCartAndNotify(event)">
+                В корзину
+              </button>
+            </div>
+          </div>
         </div>
 
-        <!-- Только кнопка "В корзину" (без выбора количества) -->
-        <div class="cart-actions">
-          <button class="btn-cart" onclick="addToCartAndNotify(event)">
-            В корзину
-          </button>
+        <!-- Полное описание: состав, показания, противопоказания -->
+        <div class="full-description">
+          <div class="desc-section">
+            <h3>Описание</h3>
+            <p>Лёгкий белый или белый с голубоватым оттенком порошок, без запаха. При взбалтывании с водой образует суспензию.</p>
+            <p><strong>Форма выпуска:</strong> Порошок для приготовления суспензии для приема внутрь. По 25 г в банках из полистирола или полиэтилена, или полиэтилентерефталата, укупоренных крышками из аналогичных материалов с контролем первого вскрытия. На банку наклеивают этикетку из бумаги этикеточной или писчей, или этикетку самоклеящуюся из бумаги или пленки, и вместе с инструкцией по применению помещают в пачку из картона. Или на банку наклеивают сложную этикетку из бумаги или пленки, только часть которой прикрепляется к банке специальной липкой лентой, позволяющей её приподнимать. Инструкцию по применению помещают под подвижную часть сложной этикетки, или наносят на внутреннюю часть сложной этикетки.</p>
+          </div>
+
+          <hr>
+
+          <div class="desc-section">
+            <h3>Состав</h3>
+            <p><strong>Активное вещество:</strong><br>1 г препарата содержит: кремния диоксид коллоидный 1,0 г</p>
+          </div>
+
+          <hr>
+
+          <div class="desc-section">
+            <h3>Показания к применению</h3>
+            <ul>
+              <li>Острые и хронические интоксикации различного происхождения у взрослых и детей;</li>
+              <li>Острые кишечные инфекции любого генеза, включая пищевые токсикоинфекции, а также диарейный синдром неинфекционного происхождения, дисбактериоз (в составе комплексной терапии);</li>
+              <li>Гнойно-септические заболевания, сопровождающиеся выраженной интоксикацией;</li>
+              <li>Острые отравления сильнодействующими и ядовитыми веществами, в том числе лекарственными препаратами и алкоголем, алкалоидами, солями тяжелых металлов и др.;</li>
+              <li>Пищевая и лекарственная аллергия;</li>
+              <li>Гипербилирубинемия (вирусный гепатит и другие желтухи) и гиперазотемия (хроническая почечная недостаточность);</li>
+              <li>Жителям экологически неблагоприятных регионов и работникам вредных производств с целью профилактики.</li>
+            </ul>
+          </div>
+
+          <hr>
+
+          <div class="desc-section">
+            <h3>Противопоказания</h3>
+            <ul>
+              <li>Язвенная болезнь желудка и двенадцатиперстной кишки в фазе обострения;</li>
+              <li>Кровотечения из желудочно-кишечного тракта;</li>
+              <li>Атония кишечника;</li>
+              <li>Индивидуальная непереносимость препарата.</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
 
-    <!-- Полное описание: состав, показания, противопоказания -->
-    <div class="full-description">
-      <div class="desc-section">
-        <h3>Описание</h3>
-        <p>Лёгкий белый или белый с голубоватым оттенком порошок, без запаха. При взбалтывании с водой образует суспензию.</p>
-        <p><strong>Форма выпуска:</strong> Порошок для приготовления суспензии для приема внутрь. По 25 г в банках из полистирола или полиэтилена, или полиэтилентерефталата, укупоренных крышками из аналогичных материалов с контролем первого вскрытия. На банку наклеивают этикетку из бумаги этикеточной или писчей, или этикетку самоклеящуюся из бумаги или пленки, и вместе с инструкцией по применению помещают в пачку из картона. Или на банку наклеивают сложную этикетку из бумаги или пленки, только часть которой прикрепляется к банке специальной липкой лентой, позволяющей её приподнимать. Инструкцию по применению помещают под подвижную часть сложной этикетки, или наносят на внутреннюю часть сложной этикетки.</p>
+    <!-- Футер -->
+    <footer class="footer">
+      <div class="container">
+        © 2026 Интернет-аптека. Все права защищены.
       </div>
+    </footer>
 
-      <hr>
+    <!-- Нижнее меню (без эмодзи) -->
+      <nav class="bottom-nav">
+        <a href="/index.html" class="bottom-nav__item">
+          <span class="bottom-nav__text">Главная</span>
+        </a>
+        <a href="/catalog.html" class="bottom-nav__item active">
+          <span class="bottom-nav__text">Каталог</span>
+        </a>
+        <a href="/cart.html" class="bottom-nav__item">
+          <span class="bottom-nav__text">Корзина</span>
+        </a>
+        <a href="#" class="bottom-nav__item">
+          <span class="bottom-nav__text">Аккаунт</span>
+        </a>
+      </nav>
+    <script>
+    // Функция добавления товара в корзину (совместима с catalog.html и cart.html)
+    function addToCartAndNotify(event) {
+      const button = event.currentTarget;
+      const product = {
+        id: 'polisorb',
+        title: 'Полисорб 50г',
+        desc: 'Энтеросорбирующее средство',
+        price: 590
+      };
 
-      <div class="desc-section">
-        <h3>Состав</h3>
-        <p><strong>Активное вещество:</strong><br>1 г препарата содержит: кремния диоксид коллоидный 1,0 г</p>
-      </div>
+      // Получаем текущую корзину из localStorage
+      const stored = localStorage.getItem('pharma_cart');
+      let cart = stored ? JSON.parse(stored) : [];
 
-      <hr>
+      // Проверяем, есть ли уже такой товар
+      const existing = cart.find(item => item.id === product.id);
 
-      <div class="desc-section">
-        <h3>Показания к применению</h3>
-        <ul>
-          <li>Острые и хронические интоксикации различного происхождения у взрослых и детей;</li>
-          <li>Острые кишечные инфекции любого генеза, включая пищевые токсикоинфекции, а также диарейный синдром неинфекционного происхождения, дисбактериоз (в составе комплексной терапии);</li>
-          <li>Гнойно-септические заболевания, сопровождающиеся выраженной интоксикацией;</li>
-          <li>Острые отравления сильнодействующими и ядовитыми веществами, в том числе лекарственными препаратами и алкоголем, алкалоидами, солями тяжелых металлов и др.;</li>
-          <li>Пищевая и лекарственная аллергия;</li>
-          <li>Гипербилирубинемия (вирусный гепатит и другие желтухи) и гиперазотемия (хроническая почечная недостаточность);</li>
-          <li>Жителям экологически неблагоприятных регионов и работникам вредных производств с целью профилактики.</li>
-        </ul>
-      </div>
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          id: product.id,
+          quantity: 1,
+          product: product
+        });
+      }
 
-      <hr>
+      // Сохраняем обратно в localStorage
+      localStorage.setItem('pharma_cart', JSON.stringify(cart));
 
-      <div class="desc-section">
-        <h3>Противопоказания</h3>
-        <ul>
-          <li>Язвенная болезнь желудка и двенадцатиперстной кишки в фазе обострения;</li>
-          <li>Кровотечения из желудочно-кишечного тракта;</li>
-          <li>Атония кишечника;</li>
-          <li>Индивидуальная непереносимость препарата.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</main>
+      // Визуальный фидбек
+      button.style.transform = 'scale(0.97)';
+      button.innerHTML = '✓ Добавлено!';
+      setTimeout(() => {
+        button.style.transform = '';
+        button.innerHTML = 'В корзину';
+      }, 800);
 
-<!-- Футер -->
-<footer class="footer">
-  <div class="container">
-    © 2026 Интернет-аптека. Все права защищены.
-  </div>
-</footer>
-
-<!-- Нижнее меню (без эмодзи) -->
-  <nav class="bottom-nav">
-    <a href="/index.html" class="bottom-nav__item">
-      <span class="bottom-nav__text">Главная</span>
-    </a>
-    <a href="/catalog.html" class="bottom-nav__item active">
-      <span class="bottom-nav__text">Каталог</span>
-    </a>
-    <a href="/cart.html" class="bottom-nav__item">
-      <span class="bottom-nav__text">Корзина</span>
-    </a>
-    <a href="#" class="bottom-nav__item">
-      <span class="bottom-nav__text">Аккаунт</span>
-    </a>
-  </nav>
-<script>
-  // Функция добавления товара в корзину (совместима с catalog.html и cart.html)
-  function addToCartAndNotify(event) {
-    const button = event.currentTarget;
-    const product = {
-      id: 'polisorb',
-      title: 'Полисорб 50г',
-      desc: 'Энтеросорбирующее средство',
-      price: 590
-    };
-
-    // Получаем текущую корзину из localStorage
-    const stored = localStorage.getItem('pharma_cart');
-    let cart = stored ? JSON.parse(stored) : [];
-
-    // Проверяем, есть ли уже такой товар
-    const existing = cart.find(item => item.id === product.id);
-
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({
-        id: product.id,
-        quantity: 1,
-        product: product
-      });
+      // Показываем уведомление
+      alert('✓ Полисорб 50г добавлен в корзину!');
     }
-
-    // Сохраняем обратно в localStorage
-    localStorage.setItem('pharma_cart', JSON.stringify(cart));
-
-    // Визуальный фидбек
-    button.style.transform = 'scale(0.97)';
-    button.innerHTML = '✓ Добавлено!';
-    setTimeout(() => {
-      button.style.transform = '';
-      button.innerHTML = 'В корзину';
-    }, 800);
-
-    // Показываем уведомление
-    alert('✓ Полисорб 50г добавлен в корзину!');
-  }
-</script>
-</body>
+    </script>
+  </body>
 </html>
