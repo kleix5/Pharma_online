@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Аллергии — Фарма-Сити</title>
+    <style>
+      /* Нижнее меню */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 74px;
+      background: #302E8C;
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .bottom-nav__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: #F0FFFF;
+      font-size: 18px;
+      transition: 0.2s ease;
+    }
+
+    .bottom-nav__item:hover {
+      color: #F0FFFF;
+      transform: translateY(-2px);
+    }
+
+    .bottom-nav__item.active {
+      color: #A7C7E7;
+    }
+
+    body {
+      padding-bottom: 90px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: century gothic, Helvetica, sans-serif;
+      line-height: 1.5;
+      color: #F8F8FF;
+      background: #191970;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #302E8C;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    /* Поиск в шапке */
+    .header-search {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 48px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .header-search:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(147, 197, 253, 0.5);
+    }
+
+    .header-search-input {
+      background: transparent;
+      border: none;
+      padding: 10px 16px;
+      color: white;
+      font-size: 14px;
+      width: 220px;
+      outline: none;
+    }
+
+    .header-search-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .header-search-btn {
+      background: rgba(147, 197, 253, 0.2);
+      border: none;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #93c5fd;
+      transition: 0.2s;
+    }
+
+    .header-search-btn:hover {
+      background: #93c5fd;
+      color: #0f172a;
+    }
+
+    /* Адаптация для мобильных */
+    @media (max-width: 850px) {
+      .header__inner {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+  
+      .header-search {
+        order: 3;
+        width: 100%;
+      }
+  
+      .header-search-input {
+        flex: 1;
+        width: auto;
+      }
+    }
+
+    /* Стили для каталога */
+    .catalog {
+      padding: 30px 0 40px;
+    }
+
+    .catalog__title {
+      font-size: clamp(38px, 6vw, 72px);
+      margin-bottom: 32px;
+      line-height: 1.05;
+    }
+
+    .catalog__count {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .catalog__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+
+    /* Карточка товара */
+    .product-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      padding: 24px;
+      transition: all 0.25s ease;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(147, 197, 253, 0.5);
+    }
+
+    .product-card__title {
+      font-weight: 800;
+      font-size: 20px;
+      color: #F0FFFF;
+      margin-bottom: 8px;
+    }
+
+    .product-card__description {
+      font-size: 15px;
+      color: #F0FFFF;
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+
+    .product-card__price {
+      font-size: 28px;
+      font-weight: 800;
+      color: #A7C7E7;
+      margin-bottom: 20px;
+    }
+
+    .product-card__old-price {
+      font-size: 16px;
+      color: #94a3b8;
+      text-decoration: line-through;
+      margin-left: 12px;
+      font-weight: normal;
+    }
+
+    .product-card__button {
+      width: 100%;
+      padding: 16px 20px;
+      background: #6495ED;
+      border: none;
+      border-radius: 14px;
+      color: #F0FFFF;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: inherit;
+      text-align: center;
+      display: inline-block;
+      transition: all 0.2s ease;
+    }
+
+    .product-card__button:hover {
+      background: #7BA5F0;
+      transform: translateY(-2px);
+    }
+
+    .product-card__button.disabled {
+      background: rgba(100, 149, 237, 0.3);
+      cursor: default;
+    }
+
+    .product-card__button.disabled:hover {
+      background: rgba(100, 149, 237, 0.3);
+      transform: none;
+    }
+
+    .footer {
+      padding: 30px 0;
+      color: #94a3b8;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 30px;
+    }
+
+    @media (max-width: 850px) {
+      .catalog__grid {
+      grid-template-columns: 1fr;
+      }
+  
+      .catalog {
+          padding-top: 20px;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="/index.html">Фарма-Сити</a>
+      </div>
+    </header>
+
+    <!-- Нижнее меню -->
+    <nav class="bottom-nav">
+      <a href="/index.html" class="bottom-nav__item">
+        <span class="bottom-nav__text">Главная</span>
+      </a>
+      <a href="/catalog.html" class="bottom-nav__item active">
+        <span class="bottom-nav__text">Каталог</span>
+      </a>
+      <a href="/cart.html" class="bottom-nav__item">
+        <span class="bottom-nav__text">Корзина</span>
+      </a>
+      <a href="/account.html" class="bottom-nav__item">
+        <span class="bottom-nav__text">Аккаунт</span>
+      </a>
+    </nav>
+
+    <main>
+      <section class="catalog">
+        <div class="container">
+          <h1 class="catalog__title">Сезонные товары: аллергии</h1>
+        
+          <div class="catalog__count">
+            Всего товаров: 3
+          </div>
+        
+          <div class="catalog__grid">
+          
+            <!-- 4. Супрастин -->
+            <div class="product-card">
+              <a href="/products/suprastin.html" class="product-card__link">
+                <div class="product-card__title">Супрастин 25мг 20шт</div>
+                <div class="product-card__description">Антигистаминный препарат</div>
+                <div class="product-card__price">от 110₽</div>
+              </a>  
+              <button class="product-card__button" onclick="addToCart({
+                id: 'suprastin',
+                title: 'Супрастин 25мг 20шт',
+                desc: 'Антигистаминный препарат',
+                price: 110
+              })">
+                🛒 В корзину
+              </button> 
+            </div>
+          
+            <!-- 10. Лоратадин -->
+            <div class="product-card">
+              <a href="/products/loratadin.html" class="product-card__link">
+                <div class="product-card__title">Лоратадин 10мг 30шт</div>
+                <div class="product-card__description">От аллергии</div>
+                <div class="product-card__price">от 65₽</div>
+              </a>
+              <button class="product-card__button" onclick="addToCart({
+                id: 'loratadin',
+                title: 'Лоратадин 10мг 30шт',
+                desc: 'От аллергии',
+                price: 65
+              })">
+              🛒 В корзину
+              </button>   
+            </div>
+          
+            <!-- 14. Фенистил гель -->
+            <div class="product-card">
+              <a href="/products/fenistil.html" class="product-card__link">
+                <div class="product-card__title">Фенистил гель 30г</div>
+                <div class="product-card__description">Гель от зуда</div>
+                <div class="product-card__price">от 390₽ <span class="product-card__old-price">450₽</span></div>
+              </a>
+              <button class="product-card__button" onclick="addToCart({
+                id: 'fenistil',
+                title: 'Фенистил гель 30г',
+                desc: 'Гель от зуда',
+                price: 390
+              })">
+              🛒 В корзину
+              </button>    
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        © 2026 Интернет-аптека. Все права защищены.
+      </div>
+    </footer>
+    <script>
+      function addToCart(product) {
+        const stored = localStorage.getItem("pharma_cart");
+        let cart = stored ? JSON.parse(stored) : [];
+
+        const existing = cart.find(item => item.id === product.id);
+
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({
+              id: product.id,
+              quantity: 1,
+              product: product
+            });
+        }
+
+        localStorage.setItem("pharma_cart", JSON.stringify(cart));
+      }
+    </script>
+  </body>
+</html>
