@@ -1,483 +1,500 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Фарма-Сити — сайт-визитка</title>
-  <style>
-/* Нижнее меню */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 74px;
-  background: #302E8C;
-  backdrop-filter: blur(14px);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 1000;
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Фарма-Сити — сайт-визитка</title>
+    <style>
+      /* Нижнее меню */
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 74px;
+        background: #302E8C;
+        backdrop-filter: blur(14px);
+        border-top: 1px solid rgba(255,255,255,0.08);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 1000;
+      }
 
-.bottom-nav__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: #F0FFFF;
-  font-size: 18px;
-  transition: 0.2s ease;
-}
+      .bottom-nav__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        color: #F0FFFF;
+        font-size: 18px;
+        transition: 0.2s ease;
+      }
 
-.bottom-nav__item:hover {
-  color: #F0FFFF;
-  transform: translateY(-2px);
-}
+      .bottom-nav__item:hover {
+        color: #F0FFFF;
+        transform: translateY(-2px);
+      }
 
-.bottom-nav__item.active {
-  color: #A7C7E7;
-}
+      .bottom-nav__item.active {
+        color: #A7C7E7;
+      }
 
-/* Чтобы контент не прятался под меню */
-body {
-  padding-bottom: 90px;
-}
+      /* Чтобы контент не прятался под меню */
+      body {
+        padding-bottom: 90px;
+      }
 
-/* сброс отступов */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+      /* сброс отступов */
+      *   {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-/* плавная прокрутка */
-html {
-  scroll-behavior: smooth;
-}
+      /* плавная прокрутка */
+      html {
+        scroll-behavior: smooth;
+      }
 
-/* общий стиль страницы */
-body {
-  min-height: 100vh;
-  font-family: century gothic, Helvetica, sans-serif;
-  line-height: 1.5;
-  color: #F8F8FF;
-  background: #191970;
-}
+      /* общий стиль страницы */
+      body {
+        min-height: 100vh;
+        font-family: century gothic, Helvetica, sans-serif;
+        line-height: 1.5;
+        color: #F8F8FF;
+        background: #191970;
+      }
 
-/* стилизация для всех ссылок */
-a {
-  color: inherit;
-  text-decoration: none;
-}
+      /* стилизация для всех ссылок */
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
 
-/* центрирование контента */
-.container {
-  width: min(1120px, 92%);
-  margin: 0 auto;
-}
+      /* центрирование контента */
+      .container {
+        width: min(1120px, 92%);
+        margin: 0 auto;
+      }
 
-/* стиль шапки */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: #302E8C;
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
+      /* стиль шапки */
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: #302E8C;
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
 
-/* положение элементов в шапке */
-.header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 0;
-}
+      /* положение элементов в шапке */
+      .header__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 0;
+      }
 
-/* стиль надписи фарма сити */
-.logo {
-  font-size: 25px;
-  font-weight: 700;
-}
+      /* стиль надписи фарма сити */
+      .logo {
+        font-size: 25px;
+        font-weight: 700;
+      }
 
-.logo span {
-  color: #F0FFFF;
-}
+      .logo span {
+        color: #F0FFFF;
+      }
 
-/* сезонные товары(отступ) */
-.hero__grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 35px;
-  align-items: center;
-}
+      /* сезонные товары(отступ) */
+      .hero__grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 35px;
+        align-items: center;
+      }
 
-.hero h1 {
-  max-width: 780px;
-  font-size: clamp(38px, 6vw, 72px);
-  line-height: 1.05;
-  margin-bottom: 24px;
-}
+      .hero h1 {
+        max-width: 780px;
+        font-size: clamp(38px, 6vw, 72px);
+        line-height: 1.05;
+        margin-bottom: 24px;
+      }
 
-/* кнопка больше - увеличенная как в оригинале */
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 60px;
-  padding: 18px 20px;
-  border-radius: 14px;
-  font-weight: 700;
-  transition: 0.2s ease;
-  cursor: pointer;
-  font-size: 18px;
-}
+      /* кнопка больше - увеличенная как в оригинале */
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 60px;
+        padding: 18px 20px;
+        border-radius: 14px;
+        font-weight: 700;
+        transition: 0.2s ease;
+        cursor: pointer;
+        font-size: 18px;
+      }
 
-.button--primary {
-  color: #F0FFFF;
-  background: #6495ED;
-}
+      .button--primary {
+        color: #F0FFFF;
+        background: #6495ED;
+      }
 
-.button--primary:hover {
-  background: #7BA5F0;
-  transform: translateY(-2px);
-}
+      .button--primary:hover {
+        background: #7BA5F0;
+        transform: translateY(-2px);
+      }
 
-/* меню популярных товаров */
-.hero-card {
-  padding: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
-}
+      /* меню популярных товаров */
+      .hero-card {
+        padding: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      }
 
-.hero-card__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 22px;
-  color: #F0FFFF;
-  font-size: 14px;
-}
+      .hero-card__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 22px;
+        color: #F0FFFF;
+        font-size: 14px;
+      }
 
-/* карточка товара как кликабельная кнопка */
-.product-item {
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  width: 100%;
-  font-family: inherit;
-  border: none;
-  text-align: left;
-}
+      /* карточка товара как кликабельная кнопка */
+      .product-item {
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        width: 100%;
+        font-family: inherit;
+        border: none;
+        text-align: left;
+      }
 
-.product-item:hover {
-  transform: translateX(8px);
-  background: rgba(255, 255, 255, 0.12);
-}
+      .product-item:hover {
+        transform: translateX(8px);
+        background: rgba(255, 255, 255, 0.12);
+      }
 
-.product-item:active {
-  transform: translateX(4px);
-}
+      .product-item:active {
+        transform: translateX(4px);
+      }
 
-.product-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
+      .product-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
 
-.product-title {
-  font-weight: 800;
-  font-size: 16px;
-  color: #F0FFFF;
-}
+      .product-title {
+        font-weight: 800;
+        font-size: 16px;
+        color: #F0FFFF;
+      }
 
-.product-description {
-  font-size: 15px;
-  color: #F0FFFF;
-  margin-top: 4px;
-}
+      .product-description {
+        font-size: 15px;
+        color: #F0FFFF;
+        margin-top: 4px;
+      }
 
-.product-price {
-  font-size: 20px;
-  font-weight: 800;
-  color: #A7C7E7;
-  text-align: right;
-}
+      .product-price {
+        font-size: 20px;
+        font-weight: 800;
+        color: #A7C7E7;
+        text-align: right;
+      }
 
-/* нижняя надпись */
-.footer {
-  padding: 30px 0;
-  color: #94a3b8;
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  margin-top: 30px;
-}
+      /* нижняя надпись */
+      .footer {
+        padding: 30px 0;
+        color: #94a3b8;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin-top: 30px;
+      }
 
-/* правильное расположение */
-@media (max-width: 850px) {
-  .hero__grid,
-  .cards,
-  .team,
-  .projects {
-    grid-template-columns: 1fr;
-  }
+      /* правильное расположение */
+      @media (max-width: 850px) {
+        .hero__grid,
+        .cards,
+        .team,
+        .projects {
+          grid-template-columns: 1fr;
+        }
 
-  /* отступ сверху */
-  .hero {
-    padding-top: 30px;
-  }
-}
+      /* отступ сверху */
+      .hero {
+        padding-top: 30px;
+        }
+      }
 
-/* Кнопки друг за другом в столбик на всю ширину */
-.category-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 0;
-  width: 100%;
-}
+      /* Кнопки друг за другом в столбик на всю ширину */
+      .category-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 0;
+        width: 100%;
+      }
 
-.category-btn-stack {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 18px 24px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  width: 100%;
-  font-family: inherit;
-}
+      .category-btn-stack {
+        display: flex;
+        align-items: center;
+        justify-content: center;  /* <-- ГЛАВНОЕ ИЗМЕНЕНИЕ: центрируем содержимое по горизонтали */
+        gap: 16px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 18px 24px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        width: 100%;
+        font-family: inherit;
+        text-align: center;       /* <-- текст внутри тоже центрируем */
+      }
 
-.category-btn-stack:hover {
-  transform: translateX(8px);
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(147, 197, 253, 0.5);
-}
+      .category-btn-stack:hover {
+        transform: translateX(8px);
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(147, 197, 253, 0.5);
+      }
 
-.category-btn-stack.active {
-  background: linear-gradient(135deg, rgba(147, 197, 253, 0.2), rgba(196, 181, 253, 0.2));
-  border-color: #93c5fd;
-  box-shadow: 0 4px 12px rgba(147, 197, 253, 0.15);
-}
+      .category-btn-stack.active {
+        background: linear-gradient(135deg, rgba(147, 197, 253, 0.2), rgba(196, 181, 253, 0.2));
+        border-color: #93c5fd;
+        box-shadow: 0 4px 12px rgba(147, 197, 253, 0.15);
+      }
 
-.category-btn-text-stack {
-  flex: 1;
-  font-size: 18px;
-  font-weight: 600;
-  color: #F0FFFF;
-}
+      .category-btn-text-stack {
+        flex: 1;
+        font-size: 18px;
+        font-weight: 600;
+        color: #F0FFFF;
+      }
 
-/* Поиск в шапке */
-.header-search {
-  display: flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 48px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
+      /* Поиск в шапке */
+      .header-search {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
 
-.header-search:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(147, 197, 253, 0.5);
-}
+      .header-search:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(147, 197, 253, 0.5);
+      }
 
-.header-search-input {
-  background: transparent;
-  border: none;
-  padding: 10px 16px;
-  color: white;
-  font-size: 14px;
-  width: 220px;
-  outline: none;
-}
+      .header-search-input {
+        background: transparent;
+        border: none;
+        padding: 10px 16px;
+        color: white;
+        font-size: 14px;
+        width: 220px;
+        outline: none;
+      }
 
-.header-search-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
+      .header-search-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
 
-.header-search-btn {
-  background: rgba(147, 197, 253, 0.2);
-  border: none;
-  padding: 10px 16px;
-  cursor: pointer;
-  font-size: 16px;
-  color: #93c5fd;
-  transition: 0.2s;
-}
+      .header-search-btn {
+        background: rgba(147, 197, 253, 0.2);
+        border: none;
+        padding: 10px 16px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #93c5fd;
+        transition: 0.2s;
+      }
 
-.header-search-btn:hover {
-  background: #93c5fd;
-  color: #0f172a;
-}
+      .header-search-btn:hover {
+        background: #93c5fd;
+        color: #0f172a;
+      }
 
-/* Адаптация для мобильных */
-@media (max-width: 850px) {
-  .header__inner {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
+      /* Адаптация для мобильных */
+      @media (max-width: 850px) {
+        .header__inner {
+          flex-wrap: wrap;
+          gap: 12px;
+        }
   
-  .header-search {
-    order: 3;
-    width: 100%;
-  }
+        .header-search {
+          order: 3;
+          width: 100%;
+        }
   
-  .header-search-input {
-    flex: 1;
-    width: auto;
-  }
-}
+        .header-search-input {
+          flex: 1;
+          width: auto;
+        }
+      }
 
-/* Секция hero обертка */
-.hero {
-  margin-bottom: 30px;
-}
+      /* Секция hero обертка */
+      .hero {
+        margin-bottom: 30px;
+      }
 
-/* Дополнительный отступ после сезонных товаров */
-.hero__grid > div:last-child {
-  margin-bottom: 0;
-}
+      /* Дополнительный отступ после сезонных товаров */
+      .hero__grid > div:last-child {
+        margin-bottom: 0;
+      }
 
-/* Небольшой отступ перед футером */
-main {
-  margin-bottom: 20px;
-}
-  </style>
-</head>
-<body>
-  <header class="header">
-    <div class="container header__inner">
-      <a class="logo" href="#top">Фарма-Сити</a>
-      
-      <!-- БЛОК ПОИСКА -->
-      <div class="header-search">
-        <input type="text" class="header-search-input" placeholder="Поиск по сайту..." id="globalSearch">
-        <button class="header-search-btn">🔍</button>
+      /* Небольшой отступ перед футером */
+      main {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="/">Фарма-Сити</a>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- Нижнее меню -->
-  <nav class="bottom-nav">
-    <a href="#top" class="bottom-nav__item active">
-      <span class="bottom-nav__text">Главная</span>
-    </a>
-    <a href="#catalog" class="bottom-nav__item">
-      <span class="bottom-nav__text">Каталог</span>
-    </a>
-    <a href="#cart" class="bottom-nav__item">
-      <span class="bottom-nav__text">Корзина</span>
-    </a>
-    <a href="#account" class="bottom-nav__item">
-      <span class="bottom-nav__text">Аккаунт</span>
-    </a>
-  </nav>
+    <!-- Нижнее меню -->
+    <nav class="bottom-nav">
+      <a href="#top" class="bottom-nav__item active">
+        <span class="bottom-nav__text">Главная</span>
+      </a>
+      <a href="/catalog.html" class="bottom-nav__item">
+        <span class="bottom-nav__text">Каталог</span>
+      </a>
+      <a href="/cart.html" class="bottom-nav__item">
+        <span class="bottom-nav__text">Корзина</span>
+      </a>
+      <a href="/account.html" class="bottom-nav__item">
+        <span class="bottom-nav__text">Аккаунт</span>
+      </a>
+    </nav>
 
-  <!-- меню поп товаров -->
-  <main id="top">
-    <section class="hero">
-      <div class="container hero__grid">
-        <div>
-          <h1>Популярные товары</h1>
+    <!-- меню поп товаров -->
+    <main id="top">
+      <section class="hero">
+        <div class="container hero__grid">
+          <div>
+            <h1>Популярные товары</h1>
           
-          <aside class="hero-card" aria-label="Каталог">
-            <div class="hero-card__top"></div>
+            <aside class="hero-card" aria-label="Каталог">
+              <div class="hero-card__top"></div>
             
-            <div style="display: flex; flex-direction: column; gap: 14px;">
-              <!-- Товар 1 -->
-              <button class="product-item" onclick="showProduct('Парацетамол 500мг 20шт')">
-                <div class="product-content">
-                  <div>
-                    <div class="product-title">Парацетамол 500мг 20шт</div>
-                    <div class="product-description">Жаропонижающее и обезболивающее средство</div>
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <!-- Товар 1 -->
+                <a class="product-item" href="/products/paracetamol.html">
+                  <div class="product-content">
+                    <div>
+                      <div class="product-title">Парацетамол 500мг 20шт</div>
+                      <div class="product-description">Жаропонижающее и обезболивающее средство</div>
+                    </div>
+                    <div class="product-price">от 87₽</div>
                   </div>
-                  <div class="product-price">от 87₽</div>
-                </div>
-              </button>
+                </a>
               
-              <!-- Товар 2 -->
-              <button class="product-item" onclick="showProduct('Левомеколь 10г')">
-                <div class="product-content">
-                  <div>
-                    <div class="product-title">Левомеколь 10г</div>
-                    <div class="product-description">Ранозаживляющая мазь</div>
-                  </div>
-                  <div class="product-price">от 183₽</div>
-                </div>
-              </button>
+                <!-- Товар 2 -->
+                <a class="product-item" href="/products/levomekol.html">
+                  <div class="product-content">
+                    <div>
+                      <div class="product-title">Левомеколь 40 мг 40г</div>
+                      <div class="product-description">Ранозаживляющая мазь</div>
+                    </div>
+                    <div class="product-price">от 183₽</div>
+                  </div> 
+                </a>
               
-              <!-- Товар 3 -->
-              <button class="product-item" onclick="showProduct('Полисорб 50г')">
-                <div class="product-content">
-                  <div>
-                    <div class="product-title">Полисорб 50г</div>
-                    <div class="product-description">Энтеросорбирующее средство</div>
+                <!-- Товар 3 -->
+                <a class="product-item" href="/products/polisorb.html">
+                  <div class="product-content">
+                    <div>
+                      <div class="product-title">Полисорб 50г</div>
+                      <div class="product-description">Энтеросорбирующее средство</div>
+                    </div>
+                    <div class="product-price">от 514₽</div>
                   </div>
-                  <div class="product-price">от 664₽</div>
-                </div>
-              </button>
+                </a>
               
-              <!-- Товар 4 -->
-              <button class="product-item" onclick="showProduct('Супрастин 25мг 20шт')">
-                <div class="product-content">
-                  <div>
-                    <div class="product-title">Супрастин 25мг 20шт</div>
-                    <div class="product-description">Антигистаминный препарат</div>
+                <!-- Товар 4 -->
+                <a class="product-item" href="/products/suprastin.html">
+                  <div class="product-content">
+                    <div>
+                      <div class="product-title">Супрастин 25мг 20шт</div>
+                      <div class="product-description">Антигистаминный препарат</div>
+                    </div>
+                    <div class="product-price">от 110₽</div>
                   </div>
-                  <div class="product-price">от 110₽</div>
-                </div>
-              </button>
-            </div>
+                </a>
+              </div>
             
-            <!-- Кнопка "Больше" - увеличенная как в оригинале -->
-            <button class="button button--primary" style="margin-top: 20px; width: 100%; text-align: center; display: block; border: none; font-size: 18px; padding: 18px 20px; min-height: 60px;">
-              Больше →
-            </button>
-          </aside>
-        </div>
+              <!-- Кнопка "Больше" - увеличенная как в оригинале -->
+              <a href="/catalog.html" class="button button--primary" 
+                  style="margin-top: 20px; width: 100%; text-align: center; display: block; font-size: 18px; padding: 18px 20px; min-height: 60px;">
+                Больше →
+              </a>
+            </aside>
+          </div>
         
-        <div>
-          <h1 style="font-size: clamp(38px, 6vw, 72px); margin-bottom: 24px;">Сезонные товары</h1>
+          <div>
+            <h1 style="font-size: clamp(38px, 6vw, 72px); margin-bottom: 24px;">Сезонные товары</h1>
           
-          <!-- Кнопки вертикальным списком на всю ширину -->
-          <div class="category-stack">
-            <button class="category-btn-stack" data-category="allergy" onclick="filterProducts('allergy')">
-              <span class="category-btn-text-stack">Аллергии</span>
-            </button>
+            <!-- Кнопки вертикальным списком на всю ширину с центрированным текстом -->
+            <div class="category-stack">
+              <a class="category-btn-stack" href="/category/allergy.html">
+                <span class="category-btn-text-stack">Аллергии</span>
+              </a>
             
-            <button class="category-btn-stack" data-category="gastro" onclick="filterProducts('gastro')">
-              <span class="category-btn-text-stack">ЖКТ</span>
-            </button>
+              <a class="category-btn-stack" href="/category/gastro.html">
+                <span class="category-btn-text-stack">ЖКТ</span>
+              </a>
             
-            <button class="category-btn-stack" data-category="hangover" onclick="filterProducts('hangover')">
-              <span class="category-btn-text-stack">Похмелье</span>
-            </button>
+              <a class="category-btn-stack" href="/category/hangover.html">
+                <span class="category-btn-text-stack">Похмелье</span>
+              </a>
             
-            <button class="category-btn-stack" data-category="disinfect" onclick="filterProducts('disinfect')">
-              <span class="category-btn-text-stack">Дезинфицирующие средства и лейкопластыри</span>
-            </button>
+              <a class="category-btn-stack" href="/category/disinfect.html">
+                <span class="category-btn-text-stack">Дезинфицирующие средства и лейкопластыри</span>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
 
-  <footer class="footer">
-    <div class="container">
-      © 2026 Фарма-Сити. Сайт-визитка.
-    </div>
-  </footer>
-</body>
+    <footer class="footer">
+      <div class="container">
+        © 2026 Интернет-аптека. Все права защищены.
+      </div>
+    </footer>
+    <script>
+      function addToCart(product) {
+        const stored = localStorage.getItem("pharma_cart");
+        let cart = stored ? JSON.parse(stored) : [];
+
+        const existing = cart.find(item => item.id === product.id);
+
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({
+              id: product.id,
+              quantity: 1,
+              product: product
+            });
+        }
+
+        localStorage.setItem("pharma_cart", JSON.stringify(cart));
+      }
+    </script>
+  </body>
 </html>

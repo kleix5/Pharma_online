@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Корзина — Фарма-Сити</title>
+    <style>
+      /* ---------- ГЛОБАЛЬНЫЕ СТИЛИ (полностью наследуем стиль главной) ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Century Gothic', Helvetica, sans-serif;
+      line-height: 1.5;
+      color: #F8F8FF;
+      background: #191970;
+      padding-bottom: 90px; /* чтобы не перекрывало нижнее меню */
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* контейнер-центрировщик */
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    /* ---------- ШАПКА (как в оригинале) ---------- */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #302E8C;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    .logo span {
+      color: #F0FFFF;
+    }
+
+    /* поисковая строка (как в визитке) */
+    .header-search {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 48px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .header-search:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(147, 197, 253, 0.5);
+    }
+
+    .header-search-input {
+      background: transparent;
+      border: none;
+      padding: 10px 16px;
+      color: white;
+      font-size: 14px;
+      width: 220px;
+      outline: none;
+    }
+
+    .header-search-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .header-search-btn {
+      background: rgba(147, 197, 253, 0.2);
+      border: none;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #93c5fd;
+      transition: 0.2s;
+    }
+
+    .header-search-btn:hover {
+      background: #93c5fd;
+      color: #0f172a;
+    }
+
+    /* ---------- НИЖНЕЕ МЕНЮ (фикс) ---------- */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 74px;
+      background: #302E8C;
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .bottom-nav__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: #F0FFFF;
+      font-size: 18px;
+      transition: 0.2s ease;
+    }
+
+    .bottom-nav__item:hover {
+      color: #F0FFFF;
+      transform: translateY(-2px);
+    }
+
+    .bottom-nav__item.active {
+      color: #A7C7E7;
+    }
+
+    /* ---------- КАРТОЧКА ТОВАРА (повторяем стиль из hero-card) ---------- */
+    .cart-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      margin-bottom: 28px;
+    }
+
+    /* заголовок секции */
+    .section-title {
+      font-size: clamp(28px, 5vw, 42px);
+      margin-bottom: 28px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      border-left: 4px solid #A7C7E7;
+      padding-left: 20px;
+    }
+
+    /* элементы списка товаров */
+    .cart-item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      gap: 16px;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item-info {
+      flex: 3;
+      min-width: 180px;
+    }
+
+    .cart-item-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #F0FFFF;
+      margin-bottom: 6px;
+    }
+
+    .cart-item-desc {
+      font-size: 14px;
+      color: #cbd5e6;
+    }
+
+    .cart-item-price {
+      font-weight: 800;
+      font-size: 22px;
+      color: #A7C7E7;
+      min-width: 100px;
+    }
+
+    /* блок с количеством и удалением */
+    .cart-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+    }
+
+    .quantity-btn {
+      background: transparent;
+      border: none;
+      width: 42px;
+      height: 42px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #F0FFFF;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quantity-btn:hover {
+      background: rgba(147, 197, 253, 0.3);
+    }
+
+    .quantity-value {
+      min-width: 48px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .remove-btn {
+      background: rgba(220, 38, 38, 0.2);
+      border: 1px solid rgba(220, 38, 38, 0.5);
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffb3b3;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .remove-btn:hover {
+      background: rgba(220, 38, 38, 0.5);
+      color: white;
+      transform: scale(0.97);
+    }
+
+    /* итоговая панель */
+    .cart-summary {
+      margin-top: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 28px;
+      padding: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .total-text {
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .total-price {
+      font-size: 36px;
+      font-weight: 800;
+      color: #A7C7E7;
+    }
+
+    /* кнопка-оформление (по стилю button--primary) */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 60px;
+      padding: 18px 28px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      cursor: pointer;
+      font-size: 18px;
+      border: none;
+    }
+
+    .button--primary {
+      color: #F0FFFF;
+      background: #6495ED;
+    }
+
+    .button--primary:hover {
+      background: #7BA5F0;
+      transform: translateY(-2px);
+    }
+
+    .button--outline {
+      background: transparent;
+      border: 1px solid #93c5fd;
+      color: #93c5fd;
+    }
+
+    .button--outline:hover {
+      background: rgba(147, 197, 253, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 64px 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 48px;
+      margin: 32px 0;
+    }
+
+    .empty-cart-icon {
+      font-size: 72px;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    .empty-cart h3 {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .footer {
+      padding: 30px 0;
+      color: #94a3b8;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 40px;
+    }
+
+    /* адаптив */
+    @media (max-width: 750px) {
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .cart-item-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .cart-summary {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+      .header__inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .header-search {
+        width: 100%;
+      }
+      .header-search-input {
+        flex: 1;
+        width: auto;
+      }
+    }
+    </style>
+  </head>
+  <body>
+
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="index.html">Фарма-Сити</a>
+      </div>
+    </header>
+
+    <!-- нижняя навигация (активный пункт корзина) -->
+    <nav class="bottom-nav">
+      <a href="/index.html" class="bottom-nav__item">Главная</a>
+      <a href="/catalog.html" class="bottom-nav__item">Каталог</a>
+      <a href="#" class="bottom-nav__item active">Корзина</a>
+      <a href="/account.html" class="bottom-nav__item">Аккаунт</a>
+    </nav>
+
+    <main style="margin-top: 32px;">
+      <div class="container">
+        <h1 class="section-title">🛒 Моя корзина</h1>
+
+        <!-- основная карточка корзины -->
+        <div class="cart-card" id="cartContainer">
+          <!-- сюда динамически будет рендериться список товаров -->
+          <div id="cartItemsList"></div>
+          <div id="cartFooter"></div>
+        </div>
+
+        <!-- рекомендации / быстрый переход в каталог (стилистика как в визитке) -->
+        <div style="margin-top: 32px; display: flex; justify-content: center;">
+          <a href="catalog.html" class="button button--outline" style="text-decoration: none;">➕ Перейти в каталог за добавками</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+      © 2026 Интернет-аптека. Все права защищены.
+      </div>
+    </footer>
+
+    <script>
+      // ----- МОДЕЛЬ ДАННЫХ КОРЗИНЫ (имитация локального хранилища) -----
+      // используем localStorage для сохранения корзины между перезагрузками
+      let cart = [];
+
+      // база доступных товаров (превью для добавления/инициализации)
+      const PRODUCTS_DB = {
+        "paracetamol": { id: "paracetamol", title: "Парацетамол 500мг 20шт", desc: "Жаропонижающее и обезболивающее средство", price: 87 },
+        "levomekol": { id: "levomekol", title: "Левомеколь 40 мг 40г", desc: "Ранозаживляющая мазь", price: 183 },
+        "polisorb": { id: "polisorb", title: "Полисорб 50г", desc: "Энтеросорбирующее средство", price: 514 },
+        "suprastin": { id: "suprastin", title: "Супрастин 25мг 20шт", desc: "Антигистаминный препарат", price: 110 },
+        "allergy_set": { id: "allergy_set", title: "Набор от аллергии", desc: "Лоратадин + капли", price: 325 },
+        "gastro_set": { id: "gastro_set", title: "Средства для ЖКТ", desc: "Мезим, панкреатин", price: 289 },
+        "hangover": { id: "hangover", title: "Антипохмелин", desc: "Алкозельцер, янтарная кислота", price: 199 },
+        "bandage": { id: "bandage", title: "Лейкопластырь + дексаметазон", desc: "Дезинфицирующие пластыри", price: 156 }
+      };
+
+      // загружаем корзину из localStorage
+      function loadCartFromStorage() {
+        const stored = localStorage.getItem("pharma_cart");
+        if(stored) {
+          try {
+            cart = JSON.parse(stored);
+            // валидация: у каждого товара должны быть нужные поля
+            if(!Array.isArray(cart)) cart = [];
+          } catch(e) { cart = []; }
+        } 
+        // если корзина пустая — добавим пару тестовых товаров для демонстрации (чтобы страница не была пустой)
+        if(cart.length === 0) {
+          // для демо: добавим два популярных товара, но можно и пустую показать, но лучше показать не пустую корзину с наглядностью.
+          // по макету сделаем предзаполненную корзину, чтобы сразу видеть функционал, но при этом пользователь сможет удалять.
+          // Это красивее чем пустой экран, отражает суть.
+          const demoCart = [
+            { id: "paracetamol", quantity: 2, product: PRODUCTS_DB["paracetamol"] },
+            { id: "suprastin", quantity: 1, product: PRODUCTS_DB["suprastin"] },
+            { id: "levomekol", quantity: 1, product: PRODUCTS_DB["levomekol"] }
+          ];
+          cart = demoCart;
+          saveCartToStorage();
+        }
+      }
+
+      function saveCartToStorage() {
+        localStorage.setItem("pharma_cart", JSON.stringify(cart));
+      }
+
+      // вспомогательная функция обновления товара (количество)
+      function updateItemQuantity(productId, newQuantity) {
+        if(newQuantity <= 0) {
+          // удаляем товар
+          cart = cart.filter(item => item.id !== productId);
+        } else {
+          const existing = cart.find(item => item.id === productId);
+          if(existing) {
+            existing.quantity = newQuantity;
+          }
+        }
+        saveCartToStorage();
+        renderCart();
+      }
+
+      // удаление товара
+      function removeItem(productId) {
+        cart = cart.filter(item => item.id !== productId);
+        saveCartToStorage();
+        renderCart();
+      }
+
+      // подсчет итоговой суммы
+      function getTotalPrice() {
+        return cart.reduce((sum, item) => {
+          const price = item.product?.price || 0;
+          return sum + (price * item.quantity);
+        }, 0);
+      }
+
+      // поиск по товарам в корзине (фильтрация по названию/описанию)
+      let searchQuery = "";
+
+      function getFilteredCart() {
+        if(!searchQuery.trim()) return cart;
+        const query = searchQuery.trim().toLowerCase();
+        return cart.filter(item => 
+          item.product.title.toLowerCase().includes(query) || 
+          (item.product.desc && item.product.desc.toLowerCase().includes(query))
+        );
+      }
+
+      // рендер корзины: список отфильтрованных товаров + футер с итогом
+      function renderCart() {
+        const container = document.getElementById("cartItemsList");
+        const footerDiv = document.getElementById("cartFooter");
+        if(!container) return;
+
+        const filtered = getFilteredCart();
+    
+        if(filtered.length === 0) {
+          // отображение пустой корзины с учётом поиска
+          const emptyMessage = searchQuery ? 
+            `😕 Ничего не найдено по запросу «${searchQuery}» в корзине` : 
+            "Ваша корзина пуста. Добавьте товары из каталога!";
+          container.innerHTML = `
+            <div class="empty-cart">
+              <div class="empty-cart-icon">🛍️</div>
+              <h3>${emptyMessage}</h3>
+              <a href="catalog.html" class="button button--primary" style="margin-top: 20px; display: inline-flex;">В каталог</a>
+            </div>
+          `;
+          footerDiv.innerHTML = "";
+          return;
+        }
+
+        // рендер списка товаров
+        let itemsHtml = `<div style="margin-bottom: 8px;">`;
+        filtered.forEach(item => {
+          const product = item.product;
+          const itemTotal = product.price * item.quantity;
+          itemsHtml += `
+            <div class="cart-item" data-id="${item.id}">
+              <div class="cart-item-info">
+                <div class="cart-item-title">${escapeHtml(product.title)}</div>
+                <div class="cart-item-desc">${escapeHtml(product.desc)}</div>
+              </div>
+              <div class="cart-item-price">${itemTotal.toFixed(0)} ₽</div>
+              <div class="cart-item-actions">
+                <div class="quantity-control">
+                  <button class="quantity-btn" data-id="${item.id}" data-delta="-1">−</button>
+                  <span class="quantity-value">${item.quantity}</span>
+                  <button class="quantity-btn" data-id="${item.id}" data-delta="+1">+</button>
+                </div>
+                <button class="remove-btn" data-id="${item.id}">Удалить</button>
+              </div>
+            </div>
+          `;
+        });
+        itemsHtml += `</div>`;
+        container.innerHTML = itemsHtml;
+
+        // подвал с итогами
+        const total = getTotalPrice();
+        footerDiv.innerHTML = `
+          <div class="cart-summary">
+            <div class="total-text">Итого к оплате:</div>
+            <div class="total-price">${total.toFixed(0)} ₽</div>
+            <button class="button button--primary" id="checkoutBtn">Оформить заказ →</button>
+          </div>
+        `;
+
+        // навесить обработчики на кнопки +/-, удаления
+        document.querySelectorAll('.quantity-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const productId = btn.getAttribute('data-id');
+            const delta = parseInt(btn.getAttribute('data-delta'), 10);
+            const item = cart.find(i => i.id === productId);
+            if(item) {
+              let newQty = item.quantity + delta;
+              if(newQty < 1) newQty = 0; // удалим при 0
+              updateItemQuantity(productId, newQty);
+            }
+          });
+        });
+
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const productId = btn.getAttribute('data-id');
+            removeItem(productId);
+          });
+        });
+
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        if(checkoutBtn) {
+          checkoutBtn.addEventListener('click', () => {
+            if(cart.length === 0) {
+              alert("Корзина пуста, добавьте товары для оформления.");
+              return;
+            }
+    
+            const total = getTotalPrice();
+            const account = localStorage.getItem('pharma_account');
+            let name = '';
+    
+            if (account) {
+              try {
+                const accountData = JSON.parse(account);
+                name = accountData.name || '';
+              } catch(e) {}
+            }
+    
+            // Используем кастомное уведомление с аккаунта
+            if (window.showOrderNotification && typeof window.showOrderNotification === 'function') {
+              window.showOrderNotification(total);
+            } else {
+              // Fallback если страница аккаунта не загружена
+              const message = name ? 
+                `${name}, спасибо за покупку! Заказ оформлен на сумму ${total} ₽` :
+                `✅ Заказ оформлен на сумму ${total} ₽. Спасибо за покупку!`;
+              alert(message);
+            }
+    
+            // Очищаем корзину после заказа (опционально)
+            // cart = [];
+            // saveCartToStorage();
+            // renderCart();
+          });
+        }
+      }
+
+      // небольшой escapers для безопасности
+      function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+          if(m === '&') return '&amp;';
+          if(m === '<') return '&lt;';
+          if(m === '>') return '&gt;';
+          return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+          return c;
+        });
+      }
+
+      // инициализация обработчика поиска на странице корзины
+      function initSearch() {
+        const searchInput = document.getElementById('cartSearch');
+        const searchBtn = document.getElementById('searchBtn');
+        if(searchInput && searchBtn) {
+          const performSearch = () => {
+            searchQuery = searchInput.value;
+            renderCart();
+          };
+          searchBtn.addEventListener('click', performSearch);
+          searchInput.addEventListener('keyup', (e) => {
+            if(e.key === 'Enter') performSearch();
+          });
+          // дополнительно кнопка "сброс" можно добавить крестик, но не обязательно
+        }
+      }
+
+      // также для имитации добавления товаров из каталога на этой же странице?
+      // так как страница корзины имеет ссылку на каталог, добавим возможность быстрого добавления демо-препарата? 
+      // Но по заданию просто страничка корзины, но с полной функциональностью: удаление, изменение количества, поиск, сумма.
+      // Добавим "секретный" функционал для демонстрации — не обязательно, но для удобства, если нужно протестировать добавление.
+      // В реальном проекте добавление происходит из каталога, но тут мы можем сделать быстрый тест через консоль, либо добавить кнопку "Добавить тестовый товар".
+      // Но чтоб не нарушать дизайн — аккуратно добавим маленький блок "для примера" если корзина пустая? но у нас уже демо-товары.
+      // всё же пользователь может удалить всё, тогда добавим кнопку "восстановить демо-пример" — это улучшит UX.
+      function addDemoProducts() {
+        // эта функция добавляет стартовые товары если корзина совсем пустая (но по loadCart он уже заполнен)
+        if(cart.length === 0) {
+          cart = [
+            { id: "paracetamol", quantity: 2, product: PRODUCTS_DB["paracetamol"] },
+            { id: "polisorb", quantity: 1, product: PRODUCTS_DB["polisorb"] }
+          ];
+          saveCartToStorage();
+          renderCart();
+        }
+      }
+
+      // также добавим глобальную функцию для возможного взаимодействия с localStorage из каталога,
+      // но в текущей вёрстке нет каталога, но имитируем: при клике на кнопку "Больше" или переходе из каталога могли бы добавить.
+      // Это не обязательно, но создадим хелпер, доступный в консоли: window.addToCartFromCatalog
+      window.addToCartFromCatalog = function(productId, quantity = 1) {
+        const prod = PRODUCTS_DB[productId];
+        if(!prod) {
+          console.warn("Товар не найден", productId);
+          return false;
+        }
+        const existing = cart.find(i => i.id === productId);
+        if(existing) {
+          existing.quantity += quantity;
+        } else {
+          cart.push({ id: productId, quantity: quantity, product: { ...prod } });
+        }
+        saveCartToStorage();
+        renderCart();
+        return true;
+      };
+
+      // страница полностью готова
+      loadCartFromStorage();
+      initSearch();
+      renderCart();
+
+      // дополнительная кнопка "Очистить корзину"? добавим в итоговый блок неявно, но не обязательно. Можно разместить под суммой как ссылку.
+      // добавим к итоговому блоку маленькую кнопку "Очистить всё", чтобы пользователь мог легко управлять.
+      // вставим её динамически после рендера, но улучшим рендер: добавим в cartFooter дополнительную ссылку если есть товары
+      const originalRender = renderCart;
+      window.renderCart = renderCart;
+      renderCart = function() {
+        originalRender();
+        // добавим после отрисовки возможность очистить всё, если есть товары
+        const footerDiv = document.getElementById('cartFooter');
+        if(footerDiv && cart.length > 0 && getFilteredCart().length > 0) {
+          const clearBtnExists = document.getElementById('clearAllCartBtn');
+          if(!clearBtnExists) {
+            const clearWrap = document.createElement('div');
+            clearWrap.style.marginTop = '16px';
+            clearWrap.style.textAlign = 'right';
+            clearWrap.innerHTML = `<button id="clearAllCartBtn" style="background: none; border: 1px solid rgba(255,100,100,0.5); padding: 8px 18px; border-radius: 40px; color: #ffb3b3; cursor: pointer;">🗑 Очистить корзину</button>`;
+            footerDiv.appendChild(clearWrap);
+            document.getElementById('clearAllCartBtn')?.addEventListener('click', () => {
+              if(confirm('Вы уверены? Все товары будут удалены из корзины.')) {
+                cart = [];
+                saveCartToStorage();
+                renderCart();
+              }
+            });
+          }
+        } else if(cart.length === 0 && document.getElementById('clearAllCartBtn')) {
+          document.getElementById('clearAllCartBtn')?.remove();
+        }
+      };
+      renderCart();
+      // также обновим при изменении поиска, чтобы кнопка очистки перерендеривалась корректно
+      // готово
+    </script>
+  </body>
+</html>
