@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Аккаунт — Фарма-Сити</title>
+  <style>
+    /* ---------- ГЛОБАЛЬНЫЕ СТИЛИ ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Century Gothic', Helvetica, sans-serif;
+      line-height: 1.5;
+      color: #F8F8FF;
+      background: #191970;
+      padding-bottom: 90px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    /* ---------- ШАПКА ---------- */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #302E8C;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 700;
+      color: #F0FFFF;
+    }
+
+    .header-search {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 48px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .header-search:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(147, 197, 253, 0.5);
+    }
+
+    .header-search-input {
+      background: transparent;
+      border: none;
+      padding: 10px 16px;
+      color: white;
+      font-size: 14px;
+      width: 220px;
+      outline: none;
+    }
+
+    .header-search-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .header-search-btn {
+      background: rgba(147, 197, 253, 0.2);
+      border: none;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #93c5fd;
+      transition: 0.2s;
+    }
+
+    .header-search-btn:hover {
+      background: #93c5fd;
+      color: #0f172a;
+    }
+
+    /* ---------- НИЖНЕЕ МЕНЮ ---------- */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 74px;
+      background: #302E8C;
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .bottom-nav__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: #F0FFFF;
+      font-size: 18px;
+      transition: 0.2s ease;
+    }
+
+    .bottom-nav__item:hover {
+      color: #F0FFFF;
+      transform: translateY(-2px);
+    }
+
+    .bottom-nav__item.active {
+      color: #A7C7E7;
+    }
+
+    /* ---------- СТРАНИЦА АККАУНТА ---------- */
+    .account-page {
+      padding: 40px 0;
+    }
+
+    .account-title {
+      font-size: clamp(38px, 6vw, 72px);
+      margin-bottom: 40px;
+      line-height: 1.05;
+      border-left: 4px solid #A7C7E7;
+      padding-left: 20px;
+    }
+
+    .account-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    /* Карточка профиля */
+    .profile-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+    }
+
+    .profile-card h2 {
+      font-size: 24px;
+      margin-bottom: 24px;
+      color: #A7C7E7;
+    }
+
+    .profile-info {
+      margin-top: 16px;
+    }
+
+    .profile-info-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .profile-info-item:last-child {
+      border-bottom: none;
+    }
+
+    .profile-info-label {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .profile-info-value {
+      color: #F0FFFF;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .profile-info-value.empty {
+      color: #94a3b8;
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* Форма регистрации */
+    .register-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+    }
+
+    .register-card h2 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: #A7C7E7;
+    }
+
+    .register-subtitle {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #cbd5e6;
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      color: #F0FFFF;
+      font-size: 16px;
+      font-family: inherit;
+      transition: all 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: #6495ED;
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.2);
+    }
+
+    .form-group input::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 16px 28px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      cursor: pointer;
+      font-size: 18px;
+      border: none;
+      width: 100%;
+      font-family: inherit;
+    }
+
+    .button--primary {
+      color: #F0FFFF;
+      background: #6495ED;
+    }
+
+    .button--primary:hover {
+      background: #7BA5F0;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(100, 149, 237, 0.3);
+    }
+
+    .button--primary:active {
+      transform: scale(0.98);
+    }
+
+    .button--secondary {
+      color: #F0FFFF;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .button--secondary:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .button--danger {
+      color: #ffb3b3;
+      background: rgba(220, 38, 38, 0.15);
+      border: 1px solid rgba(220, 38, 38, 0.3);
+    }
+
+    .button--danger:hover {
+      background: rgba(220, 38, 38, 0.25);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .button-group .button {
+      flex: 1;
+    }
+
+    .footer {
+      padding: 30px 0;
+      color: #94a3b8;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 30px;
+    }
+
+    /* Кастомное уведомление (как в корзине) */
+    .notification-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .notification-modal {
+      background: #302E8C;
+      border-radius: 28px;
+      padding: 40px 48px;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+      animation: slideUp 0.3s ease;
+    }
+
+    .notification-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    .notification-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #F0FFFF;
+      margin-bottom: 12px;
+    }
+
+    .notification-message {
+      font-size: 16px;
+      color: #cbd5e6;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .notification-message strong {
+      color: #A7C7E7;
+    }
+
+    .notification-btn {
+      padding: 12px 32px;
+      background: #6495ED;
+      border: none;
+      border-radius: 60px;
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+
+    .notification-btn:hover {
+      background: #7BA5F0;
+      transform: scale(1.03);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Адаптив */
+    @media (max-width: 850px) {
+      .account-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .header__inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .header-search {
+        width: 100%;
+      }
+
+      .header-search-input {
+        flex: 1;
+        width: auto;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      .notification-modal {
+        padding: 32px 24px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .profile-card,
+      .register-card {
+        padding: 20px;
+      }
+
+      .notification-modal {
+        padding: 24px 20px;
+      }
+
+      .notification-title {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container header__inner">
+    <a class="logo" href="index.html">Фарма-Сити</a>
+  </div>
+</header>
+
+<!-- Нижнее меню -->
+<nav class="bottom-nav">
+  <a href="/index.html" class="bottom-nav__item">Главная</a>
+  <a href="/catalog.html" class="bottom-nav__item">Каталог</a>
+  <a href="/cart.html" class="bottom-nav__item">Корзина</a>
+  <a href="/account.html" class="bottom-nav__item active">Аккаунт</a>
+</nav>
+
+<main>
+  <div class="container account-page">
+    <h1 class="account-title">👤 Аккаунт</h1>
+
+    <div class="account-grid">
+      <!-- Левая колонка: Профиль -->
+      <div class="profile-card">
+        <h2>📋 Данные профиля</h2>
+        <div class="profile-info" id="profileInfo">
+          <div class="profile-info-item">
+            <span class="profile-info-label">Имя</span>
+            <span class="profile-info-value empty" id="profileName">Не указано</span>
+          </div>
+          <div class="profile-info-item">
+            <span class="profile-info-label">Номер телефона</span>
+            <span class="profile-info-value empty" id="profilePhone">Не указан</span>
+          </div>
+          <div class="profile-info-item">
+            <span class="profile-info-label">Статус</span>
+            <span class="profile-info-value" id="profileStatus" style="color: #94a3b8;">Гость</span>
+          </div>
+        </div>
+        
+        <button class="button button--danger" id="logoutBtn" style="margin-top: 20px; display: none;">
+          Выйти из аккаунта
+        </button>
+      </div>
+
+      <!-- Правая колонка: Регистрация/Вход -->
+      <div class="register-card">
+        <h2>🔐 Вход в аккаунт</h2>
+        <p class="register-subtitle">Введите свои данные для регистрации или входа</p>
+
+        <form id="accountForm">
+          <div class="form-group">
+            <label for="userName">Ваше имя</label>
+            <input type="text" id="userName" placeholder="Например: Александр" required />
+          </div>
+
+          <div class="form-group">
+            <label for="userPhone">Номер телефона</label>
+            <input type="tel" id="userPhone" placeholder="+7 (999) 123-45-67" required />
+          </div>
+
+          <button type="submit" class="button button--primary">
+            Войти / Зарегистрироваться
+          </button>
+        </form>
+
+        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08);">
+          <p style="font-size: 13px; color: #94a3b8; text-align: center;">
+            После входа ваше имя будет отображаться в уведомлениях корзины
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    © 2026 Интернет-аптека. Все права защищены.
+  </div>
+</footer>
+
+<script>
+  // ---------- УПРАВЛЕНИЕ АККАУНТОМ ----------
+  function getAccountData() {
+    const stored = localStorage.getItem('pharma_account');
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  function saveAccountData(name, phone) {
+    const data = { name: name.trim(), phone: phone.trim() };
+    localStorage.setItem('pharma_account', JSON.stringify(data));
+    return data;
+  }
+
+  function clearAccountData() {
+    localStorage.removeItem('pharma_account');
+  }
+
+  function updateProfileUI() {
+    const account = getAccountData();
+    const nameEl = document.getElementById('profileName');
+    const phoneEl = document.getElementById('profilePhone');
+    const statusEl = document.getElementById('profileStatus');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    if (account && account.name && account.phone) {
+      nameEl.textContent = account.name;
+      nameEl.className = 'profile-info-value';
+      phoneEl.textContent = account.phone;
+      phoneEl.className = 'profile-info-value';
+      statusEl.textContent = '✅ Активен';
+      statusEl.style.color = '#A7C7E7';
+      logoutBtn.style.display = 'block';
+    } else {
+      nameEl.textContent = 'Не указано';
+      nameEl.className = 'profile-info-value empty';
+      phoneEl.textContent = 'Не указан';
+      phoneEl.className = 'profile-info-value empty';
+      statusEl.textContent = '👤 Гость';
+      statusEl.style.color = '#94a3b8';
+      logoutBtn.style.display = 'none';
+    }
+  }
+
+  // ---------- КАСТОМНОЕ УВЕДОМЛЕНИЕ (как в корзине) ----------
+  function showNotification(title, message, icon = '✅') {
+    // Удаляем старые уведомления
+    const oldOverlay = document.querySelector('.notification-overlay');
+    if (oldOverlay) oldOverlay.remove();
+
+    const overlay = document.createElement('div');
+    overlay.className = 'notification-overlay';
+
+    overlay.innerHTML = `
+      <div class="notification-modal">
+        <div class="notification-icon">${icon}</div>
+        <div class="notification-title">${title}</div>
+        <div class="notification-message">${message}</div>
+        <button class="notification-btn">Отлично!</button>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    // Закрытие по кнопке
+    overlay.querySelector('.notification-btn').addEventListener('click', () => {
+      overlay.remove();
+    });
+
+    // Закрытие по клику вне модалки
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) overlay.remove();
+    });
+  }
+
+  // ---------- ОБРАБОТЧИК ФОРМЫ ----------
+  document.getElementById('accountForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nameInput = document.getElementById('userName');
+    const phoneInput = document.getElementById('userPhone');
+    const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
+
+    if (!name || !phone) {
+      showNotification('⚠️ Ошибка', 'Пожалуйста, заполните все поля', '⚠️');
+      return;
+    }
+
+    // Сохраняем данные
+    const account = saveAccountData(name, phone);
+    
+    // Обновляем UI
+    updateProfileUI();
+
+    // Очищаем поля формы
+    nameInput.value = '';
+    phoneInput.value = '';
+
+    // Показываем уведомление с именем
+    showNotification(
+      '🎉 Аккаунт зарегистрирован!',
+      `Имя: <strong>${account.name}</strong><br>Номер: ${account.phone}<br><br>Добро пожаловать в Фарма-Сити!`,
+      '🎉'
+    );
+  });
+
+  // ---------- ВЫХОД ИЗ АККАУНТА ----------
+  document.getElementById('logoutBtn').addEventListener('click', function() {
+    if (confirm('Вы уверены, что хотите выйти из аккаунта?')) {
+      clearAccountData();
+      updateProfileUI();
+      showNotification('👋 До свидания!', 'Вы вышли из аккаунта', '👋');
+    }
+  });
+
+  // ---------- МОДИФИЦИРУЕМ УВЕДОМЛЕНИЕ КОРЗИНЫ ----------
+  // Перехватываем alert в cart.html через сохранение оригинальной функции
+  // Но лучше модифицировать функцию оформления заказа в cart.html через localStorage событие
+
+  // Добавляем глобальный хук для cart.html
+  window.getAccountName = function() {
+    const account = getAccountData();
+    return account ? account.name : null;
+  };
+
+  // Также создаём функцию для показа уведомления с именем
+  window.showOrderNotification = function(total) {
+    const account = getAccountData();
+    const name = account ? account.name : null;
+    
+    let message = `Спасибо за покупку!<br>Сумма заказа: <strong>${total} ₽</strong>`;
+    
+    if (name) {
+      message = `<strong>${name}</strong>, спасибо за покупку!<br>Сумма заказа: <strong>${total} ₽</strong><br><br>Заказ оформлен успешно!`;
+    } else {
+      message = `Спасибо за покупку!<br>Сумма заказа: <strong>${total} ₽</strong><br><br>Заказ оформлен успешно!`;
+    }
+    
+    showNotification('✅ Заказ оформлен!', message, '📦');
+  };
+
+  // Инициализация UI
+  updateProfileUI();
+
+  // Если мы на странице аккаунта, проверяем, не пришли ли сюда из корзины с параметром
+  // Для совместимости: если в URL есть параметр showOrder, показываем уведомление
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('showOrder') === 'true') {
+    const total = urlParams.get('total') || '0';
+    window.showOrderNotification(total);
+    // Убираем параметр из URL
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+
+  console.log('📱 Страница аккаунта загружена. Используйте форму для входа.');
+</script>
+
+</body>
+</html>

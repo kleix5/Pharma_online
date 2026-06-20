@@ -387,10 +387,6 @@
     <header class="header">
       <div class="container header__inner">
         <a class="logo" href="index.html">Фарма-Сити</a>
-        <div class="header-search">
-          <input type="text" class="header-search-input" placeholder="Поиск по корзине..." id="cartSearch">
-          <button class="header-search-btn" id="searchBtn">🔍</button>
-        </div>
       </div>
     </header>
 
@@ -399,7 +395,7 @@
       <a href="/index.html" class="bottom-nav__item">Главная</a>
       <a href="/catalog.html" class="bottom-nav__item">Каталог</a>
       <a href="#" class="bottom-nav__item active">Корзина</a>
-      <a href="#account" class="bottom-nav__item">Аккаунт</a>
+      <a href="/account.html" class="bottom-nav__item">Аккаунт</a>
     </nav>
 
     <main style="margin-top: 32px;">
@@ -603,8 +599,30 @@
               alert("Корзина пуста, добавьте товары для оформления.");
               return;
             }
-            alert(`✅ Заказ оформлен на сумму ${getTotalPrice()} ₽. Спасибо за покупку!`);
-            // можно очистить корзину после заказа (опционально)
+    
+            const total = getTotalPrice();
+            const account = localStorage.getItem('pharma_account');
+            let name = '';
+    
+            if (account) {
+              try {
+                const accountData = JSON.parse(account);
+                name = accountData.name || '';
+              } catch(e) {}
+            }
+    
+            // Используем кастомное уведомление с аккаунта
+            if (window.showOrderNotification && typeof window.showOrderNotification === 'function') {
+              window.showOrderNotification(total);
+            } else {
+              // Fallback если страница аккаунта не загружена
+              const message = name ? 
+                `${name}, спасибо за покупку! Заказ оформлен на сумму ${total} ₽` :
+                `✅ Заказ оформлен на сумму ${total} ₽. Спасибо за покупку!`;
+              alert(message);
+            }
+    
+            // Очищаем корзину после заказа (опционально)
             // cart = [];
             // saveCartToStorage();
             // renderCart();
